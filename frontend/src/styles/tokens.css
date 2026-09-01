@@ -1,0 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap');
+
+:root {
+  --bg: #111110;
+  --bg-alt: #1b1a18;
+  --text: #f2ece4;
+  --text-muted: #a8a29a;
+  --accent: #a63d2f;
+  --border: #2a2926;
+  --font-display: 'Fraunces', Georgia, serif;
+  --font-functional: 'Inter', Arial, sans-serif;
+}
