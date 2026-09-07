@@ -138,8 +138,9 @@ export function Booking() {
   return (
     <main className="booking-shell">
       <header className="hero">
-        {/* TODO: reemplazar este bloque por la foto real de ambiente del cliente. */}
-        <div className="hero-image" role="img" aria-label="Ambiente de barbería placeholder" />
+        <div className="hero-image">
+          <img src="https://images.unsplash.com/photo-1585747860715-2ba37e788b70?w=800&q=80" alt="Ambiente de barbería El Vasco" onError={(event) => { event.currentTarget.style.display = 'none' }} />
+        </div>
         <div className="hero-copy">
           <p className="brand-mark">EL VASCO</p>
           <h1>Tu próximo corte,<br />a tu tiempo.</h1>

@@ -1,7 +1,8 @@
 #root { min-height: 100vh; }
 .booking-shell { max-width: 1180px; margin: 0 auto; min-height: 100vh; }
 .hero { display: grid; grid-template-columns: 1fr; gap: 2rem; padding: 1rem; }
-.hero-image { min-height: 240px; background: linear-gradient(145deg, #403831, #191816 65%); position: relative; }
+.hero-image { min-height: 240px; background: linear-gradient(145deg, #403831, #191816 65%); overflow: hidden; position: relative; }
+.hero-image img { filter: grayscale(1) contrast(1.1); height: 100%; object-fit: cover; position: absolute; width: 100%; }
 .hero-image::after { content: 'foto de ambiente'; position: absolute; inset: auto 1rem 1rem; color: var(--text-muted); font-size: .7rem; letter-spacing: .08em; text-transform: uppercase; }
 .hero-copy { padding: .5rem 0 1.5rem; }
 .brand-mark { color: var(--accent); font-size: .75rem; font-weight: 600; letter-spacing: .18em; margin: 0 0 2.5rem; }
@@ -15,7 +16,8 @@ h1 { font: 500 clamp(3.2rem, 16vw, 7.5rem)/.95 var(--font-display); letter-spaci
 .step-heading small, .slot-heading small { color: var(--text-muted); font-size: .72rem; }
 .service-list { border-top: 1px solid var(--border); }
 .service-item { align-items: center; background: transparent; border: 0; border-bottom: 1px solid var(--border); color: var(--text); cursor: pointer; display: flex; justify-content: space-between; padding: 1.2rem 0; text-align: left; width: 100%; }
-.service-image { background-color: var(--border); background-position: center; background-size: cover; filter: grayscale(1) contrast(1.1); height: 3.5rem; margin-right: .9rem; opacity: .8; width: 4.5rem; }
+.service-image { background-color: var(--border); display: block; height: 3.5rem; margin-right: .9rem; overflow: hidden; width: 4.5rem; }
+.service-image img { filter: grayscale(1) contrast(1.1); height: 100%; object-fit: cover; opacity: .8; width: 100%; }
 .service-item strong, .service-item small { display: block; }
 .service-item small { color: var(--text-muted); font-size: .75rem; margin-top: .45rem; }
 .service-item--selected strong, .service-item--selected .service-price { color: var(--accent); }
