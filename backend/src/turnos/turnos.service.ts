@@ -14,6 +14,12 @@ const argentinaDate = (fecha: string) => {
   if (Number.isNaN(date.getTime()) || date.toISOString().slice(0, 10) !== fecha) throw new BadRequestException('Fecha inválida');
   return date;
 };
+const argentinaNowMinutes = () => {
+  const parts = new Intl.DateTimeFormat('en', { timeZone: 'America/Argentina/Buenos_Aires', hour: '2-digit', minute: '2-digit', hour12: false }).formatToParts(new Date());
+  const values = Object.fromEntries(parts.map(({ type, value }) => [type, value]));
+  return Number(values.hour) * 60 + Number(values.minute);
+};
+const argentinaToday = () => new Intl.DateTimeFormat('en-CA', { timeZone: 'America/Argentina/Buenos_Aires' }).format(new Date());
 
 @Injectable()
 export class TurnosService {
@@ -32,8 +38,11 @@ export class TurnosService {
     const start = toMinutes(horario.horaInicio);
     const end = toMinutes(horario.horaFin);
     const duration = servicio.duracionMinutos;
+    const today = argentinaToday();
+    const minimumStart = fecha === today ? argentinaNowMinutes() + 15 : null;
     const free: string[] = [];
     for (let slot = start; slot + duration <= end; slot += 30) {
+      if (minimumStart !== null && slot < minimumStart) continue;
       const overlaps = appointments.some((appointment) => appointment.estado !== EstadoTurno.CANCELADO && slot < toMinutes(appointment.hora) + appointment.servicio.duracionMinutos && slot + duration > toMinutes(appointment.hora));
       if (!overlaps) free.push(toTime(slot));
     }

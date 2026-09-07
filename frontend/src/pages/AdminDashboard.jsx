@@ -2,7 +2,7 @@ import { useCallback, useEffect, useState } from 'react'
 import { Button } from '../components/Button'
 import { Input } from '../components/Input'
 import { api } from '../services/api'
-import { getArgentinaToday } from '../utils/date'
+import { formatArgentinaDateLong, getArgentinaToday } from '../utils/date'
 
 const today = getArgentinaToday()
 
@@ -44,7 +44,7 @@ export function AdminDashboard() {
 
   return (
     <section className="admin-content">
-      <div className="admin-title-row"><div><p className="section-kicker">Agenda</p><h1>Turnos</h1></div><div className="admin-filters"><Input id="turnos-date" label="Fecha" type="date" value={date} onChange={(e) => { setLoading(true); setDate(e.target.value) }} /><Input id="turnos-name" label="Buscar cliente" placeholder="Nombre" value={name} onChange={(e) => { setLoading(true); setName(e.target.value) }} /></div></div>
+      <div className="admin-title-row"><div><p className="section-kicker">Agenda</p><h1>Turnos</h1><small className="date-readable">{formatArgentinaDateLong(date)}</small></div><div className="admin-filters"><Input id="turnos-date" label="Fecha" type="date" value={date} onChange={(e) => { setLoading(true); setDate(e.target.value) }} /><Input id="turnos-name" label="Buscar cliente" placeholder="Nombre" value={name} onChange={(e) => { setLoading(true); setName(e.target.value) }} /></div></div>
       <div className="summary-counters" aria-label="Resumen de turnos"><span><strong>{summary.total}</strong> turnos</span><span><strong>{summary.pendientes}</strong> pendientes</span><span><strong>{summary.confirmados}</strong> confirmados</span></div>
       {error && <p className="error-message" role="alert">{error}</p>}
       {loading ? <p className="loading-state"><span className="loading-spinner" aria-hidden="true" />Cargando turnos…</p> : turnos.length === 0 ? <p className="empty-state">No hay turnos para esta fecha</p> : (

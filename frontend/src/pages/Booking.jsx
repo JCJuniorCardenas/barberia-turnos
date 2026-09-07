@@ -6,6 +6,7 @@ import { ServiceListItem } from '../components/ServiceListItem'
 import { TimeSlotPicker } from '../components/TimeSlotPicker'
 import { api } from '../services/api'
 import { getArgentinaToday } from '../utils/date'
+import { formatArgentinaDateLong } from '../utils/date'
 
 const today = getArgentinaToday()
 
@@ -101,7 +102,8 @@ export function Booking() {
     }
   }
 
-  const whatsappText = `Hola! Quiero confirmar mi turno para ${service?.nombre} el ${date} a las ${time}. Mi nombre es ${form.nombre}.`
+  const readableDate = formatArgentinaDateLong(date)
+  const whatsappText = `Hola! Quiero confirmar mi turno para ${service?.nombre} el ${readableDate} a las ${time}. Mi nombre es ${form.nombre}.`
   const whatsappNumber = import.meta.env.VITE_WHATSAPP_NUMBER
   const myBookingUrl = `${window.location.origin}/mi-turno/${accessCode}`
   const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(`${whatsappText} Podés ver o cancelar tu turno acá: ${myBookingUrl}`)}`
@@ -123,7 +125,7 @@ export function Booking() {
           <p>Solo falta enviarnos la confirmación por WhatsApp.</p>
           <div className="summary summary--confirmed">
             <strong>{service.nombre}</strong>
-            <span>{date} · {time}</span>
+            <span>{readableDate} · {time}</span>
             <span>{form.nombre}</span>
           </div>
           <a className="button button--primary" href={whatsappUrl} target="_blank" rel="noreferrer">
@@ -167,7 +169,7 @@ export function Booking() {
           {step === 2 && (
             <div className="step-content">
               <div className="step-heading"><span>Elegí fecha y hora</span><small>{service?.nombre}</small></div>
-              <label className="field" htmlFor="date"><span>Fecha</span><input id="date" type="date" min={today} value={date} onChange={selectDate} /></label>
+              <label className="field" htmlFor="date"><span>Fecha</span><input id="date" type="date" min={today} value={date} onChange={selectDate} /><small className="date-readable">{formatArgentinaDateLong(date)}</small></label>
               <div className="slot-heading"><span>Horarios disponibles</span>{slotsLoading && <small className="loading-inline"><span className="loading-spinner" aria-hidden="true" />Cargando…</small>}</div>
               <TimeSlotPicker slots={slots} selected={time} onSelect={setTime} />
             </div>
@@ -178,7 +180,7 @@ export function Booking() {
               <div className="step-heading"><span>Dejanos tus datos</span><small>Para guardar tu turno</small></div>
               <Input id="nombre" name="nombre" label="Nombre" placeholder="Tu nombre" value={form.nombre} onChange={handleFormChange} autoComplete="name" required />
               <Input id="telefono" name="telefono" label="Teléfono" type="tel" placeholder="1123456789" value={form.telefono} onChange={handleFormChange} autoComplete="tel" required />
-              <div className="summary"><span>{service?.nombre}</span><span>{date} · {time}</span></div>
+              <div className="summary"><span>{service?.nombre}</span><span>{formatArgentinaDateLong(date)} · {time}</span></div>
             </div>
           )}
 
