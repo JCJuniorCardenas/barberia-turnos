@@ -24,12 +24,27 @@ export class TurnosController {
   @ApiOperation({ summary: 'Crear un turno público' })
   create(@Body() dto: CreateTurnoDto) { return this.service.create(dto); }
 
+  @Get('mi-turno/:codigo')
+  @Throttle({ default: { limit: 20, ttl: 60000 } })
+  findByAccessCode(@Param('codigo') codigo: string) { return this.service.findByAccessCode(codigo); }
+
+  @Patch('mi-turno/:codigo/cancelar')
+  @Throttle({ default: { limit: 20, ttl: 60000 } })
+  cancelByAccessCode(@Param('codigo') codigo: string) { return this.service.cancelByAccessCode(codigo); }
+
+  @Get('resumen')
+  @UseGuards(AuthGuard)
+  @ApiBearerAuth()
+  summary(@Query('fecha') fecha?: string) {
+    return this.service.summary(fecha || new Intl.DateTimeFormat('en-CA', { timeZone: 'America/Argentina/Buenos_Aires' }).format(new Date()));
+  }
+
   @Get()
   @SkipThrottle()
   @UseGuards(AuthGuard)
   @ApiBearerAuth()
   @ApiOperation({ summary: 'Listar turnos para administración' })
-  findAll(@Query() query: ListTurnosDto) { return this.service.findAll(query.fecha); }
+  findAll(@Query() query: ListTurnosDto) { return this.service.findAll(query.fecha, query.nombreCliente); }
 
   @Patch(':id/cancelar')
   @SkipThrottle()

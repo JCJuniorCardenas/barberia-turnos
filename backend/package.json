@@ -20,7 +20,11 @@
     "test:cov": "vitest run --coverage",
     "test:debug": "vitest --inspect-brk --no-file-parallelism",
     "test:e2e": "vitest run --config ./vitest.config.e2e.ts",
-    "seed:admin": "npm run build && node dist/auth/seed-admin.js"
+    "seed:admin": "npm run build && node dist/auth/seed-admin.js",
+    "typeorm": "typeorm",
+    "migration:generate": "npm run build && npm run typeorm -- migration:generate ./src/migrations/Migration -d ./dist/data-source.js",
+    "migration:run": "npm run build && npm run typeorm -- migration:run -d ./dist/data-source.js",
+    "migration:revert": "npm run build && npm run typeorm -- migration:revert -d ./dist/data-source.js"
   },
   "dependencies": {
     "@nestjs/common": "^12.0.1",
@@ -35,6 +39,7 @@
     "bcrypt": "^6.0.0",
     "class-transformer": "^0.5.1",
     "class-validator": "^0.15.1",
+    "dotenv": "^17.4.2",
     "passport": "^0.7.0",
     "passport-jwt": "^4.0.1",
     "pg": "^8.23.0",
@@ -57,6 +62,7 @@
     "prettier": "^3.4.2",
     "source-map-support": "^0.5.21",
     "supertest": "^7.0.0",
+    "ts-node": "^10.9.2",
     "tsx": "^4.23.13",
     "typescript": "^6.0.2",
     "vite-tsconfig-paths": "^5.1.4",

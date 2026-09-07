@@ -8,7 +8,9 @@ const today = getArgentinaToday()
 
 export function AdminDashboard() {
   const [date, setDate] = useState(today)
+  const [name, setName] = useState('')
   const [turnos, setTurnos] = useState([])
+  const [summary, setSummary] = useState({ total: 0, pendientes: 0, confirmados: 0, cancelados: 0 })
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState('')
   const [cancelling, setCancelling] = useState('')
@@ -16,9 +18,13 @@ export function AdminDashboard() {
 
   const loadTurnos = useCallback(async () => {
     setError('')
-    try { setTurnos(await api.getTurnos(date)) } catch (err) { setError(err.message) }
+    try {
+      const [items, counts] = await Promise.all([api.getTurnos(date, name), api.getTurnosSummary(date)])
+      setTurnos(items)
+      setSummary(counts)
+    } catch (err) { setError(err.message) }
     finally { setLoading(false) }
-  }, [date])
+  }, [date, name])
   // oxlint-disable-next-line react/set-state-in-effect
   useEffect(() => { loadTurnos() }, [loadTurnos])
 
@@ -38,7 +44,8 @@ export function AdminDashboard() {
 
   return (
     <section className="admin-content">
-      <div className="admin-title-row"><div><p className="section-kicker">Agenda</p><h1>Turnos</h1></div><Input id="turnos-date" label="Fecha" type="date" value={date} onChange={(e) => { setLoading(true); setDate(e.target.value) }} /></div>
+      <div className="admin-title-row"><div><p className="section-kicker">Agenda</p><h1>Turnos</h1></div><div className="admin-filters"><Input id="turnos-date" label="Fecha" type="date" value={date} onChange={(e) => { setLoading(true); setDate(e.target.value) }} /><Input id="turnos-name" label="Buscar cliente" placeholder="Nombre" value={name} onChange={(e) => { setLoading(true); setName(e.target.value) }} /></div></div>
+      <div className="summary-counters" aria-label="Resumen de turnos"><span><strong>{summary.total}</strong> turnos</span><span><strong>{summary.pendientes}</strong> pendientes</span><span><strong>{summary.confirmados}</strong> confirmados</span></div>
       {error && <p className="error-message" role="alert">{error}</p>}
       {loading ? <p className="loading-state"><span className="loading-spinner" aria-hidden="true" />Cargando turnos…</p> : turnos.length === 0 ? <p className="empty-state">No hay turnos para esta fecha</p> : (
         <div className="admin-list">

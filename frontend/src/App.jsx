@@ -6,6 +6,7 @@ import { AdminHorarios } from './pages/AdminHorarios'
 import { AdminLogin } from './pages/AdminLogin'
 import { AdminServicios } from './pages/AdminServicios'
 import { Booking } from './pages/Booking'
+import { MyBooking } from './pages/MyBooking'
 import './styles/tokens.css'
 import './App.css'
 
@@ -14,6 +15,7 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Booking />} />
+        <Route path="/mi-turno/:codigo" element={<MyBooking />} />
         <Route path="/admin/login" element={<AdminLogin />} />
         <Route element={<ProtectedRoute />}>
           <Route path="/admin" element={<AdminLayout />}>

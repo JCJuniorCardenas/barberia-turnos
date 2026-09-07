@@ -21,6 +21,7 @@ export function Booking() {
   const [slotsLoading, setSlotsLoading] = useState(false)
   const [error, setError] = useState('')
   const [confirmed, setConfirmed] = useState(false)
+  const [accessCode, setAccessCode] = useState('')
 
   const loadServices = useCallback(() => {
     setLoading(true)
@@ -76,13 +77,14 @@ export function Booking() {
     setError('')
     setLoading(true)
     try {
-      await api.createBooking({
+      const booking = await api.createBooking({
         servicioId: service.id,
         nombreCliente: form.nombre.trim(),
         telefonoCliente: form.telefono.trim(),
         fecha: date,
         hora: time,
       })
+      setAccessCode(booking.codigoAcceso)
       setConfirmed(true)
       setStep(4)
     } catch (err) {
@@ -101,7 +103,8 @@ export function Booking() {
 
   const whatsappText = `Hola! Quiero confirmar mi turno para ${service?.nombre} el ${date} a las ${time}. Mi nombre es ${form.nombre}.`
   const whatsappNumber = import.meta.env.VITE_WHATSAPP_NUMBER
-  const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappText)}`
+  const myBookingUrl = `${window.location.origin}/mi-turno/${accessCode}`
+  const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(`${whatsappText} Podés ver o cancelar tu turno acá: ${myBookingUrl}`)}`
 
   function retry() {
     setError('')
@@ -126,6 +129,7 @@ export function Booking() {
           <a className="button button--primary" href={whatsappUrl} target="_blank" rel="noreferrer">
             Confirmar por WhatsApp
           </a>
+          <a className="booking-link" href={myBookingUrl}>Guardá este link para ver o cancelar tu turno más adelante</a>
         </div>
       </main>
     )
