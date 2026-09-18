@@ -2,7 +2,7 @@ import { ApiProperty } from '@nestjs/swagger';
 import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 import { Servicio } from '../../servicios/entities/servicio.entity.js';
 
-export enum EstadoTurno { PENDIENTE = 'pendiente', CONFIRMADO = 'confirmado', CANCELADO = 'cancelado' }
+export enum EstadoTurno { PENDIENTE = 'pendiente', CONFIRMADO = 'confirmado', COMPLETADO = 'completado', CANCELADO = 'cancelado' }
 
 @Entity('turnos')
 export class Turno {

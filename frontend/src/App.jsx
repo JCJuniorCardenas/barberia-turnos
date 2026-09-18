@@ -5,6 +5,7 @@ import { AdminDashboard } from './pages/AdminDashboard'
 import { AdminHorarios } from './pages/AdminHorarios'
 import { AdminLogin } from './pages/AdminLogin'
 import { AdminServicios } from './pages/AdminServicios'
+import { AdminFinanzas } from './pages/AdminFinanzas'
 import { Booking } from './pages/Booking'
 import { MyBooking } from './pages/MyBooking'
 import './styles/tokens.css'
@@ -23,6 +24,7 @@ function App() {
             <Route path="dashboard" element={<AdminDashboard />} />
             <Route path="horarios" element={<AdminHorarios />} />
             <Route path="servicios" element={<AdminServicios />} />
+            <Route path="finanzas" element={<AdminFinanzas />} />
           </Route>
         </Route>
         <Route path="*" element={<Navigate to="/" replace />} />

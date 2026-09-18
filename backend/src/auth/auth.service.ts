@@ -5,7 +5,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import * as bcrypt from 'bcrypt';
 import { Repository } from 'typeorm';
 import { LoginDto } from './dto/login.dto.js';
-import { Usuario } from './entities/usuario.entity.js';
+import { RolUsuario, Usuario } from './entities/usuario.entity.js';
 
 @Injectable()
 export class AuthService {
@@ -23,7 +23,7 @@ export class AuthService {
     if (!user || !(await bcrypt.compare(dto.password, user.password))) {
       throw new UnauthorizedException('Email o contraseña incorrectos');
     }
-    return { access_token: await this.jwt.signAsync({ sub: user.id, email: user.email }) };
+    return { access_token: await this.jwt.signAsync({ sub: user.id, email: user.email, rol: user.rol }) };
   }
 
   async createAdmin(email: string, password: string): Promise<Usuario> {
@@ -33,7 +33,7 @@ export class AuthService {
     if (user) {
       user.password = passwordHash;
     } else {
-      user = this.users.create({ email: normalizedEmail, password: passwordHash });
+      user = this.users.create({ email: normalizedEmail, password: passwordHash, rol: RolUsuario.ADMIN });
     }
     return this.users.save(user);
   }

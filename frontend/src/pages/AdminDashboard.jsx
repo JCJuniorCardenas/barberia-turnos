@@ -15,6 +15,7 @@ export function AdminDashboard() {
   const [error, setError] = useState('')
   const [cancelling, setCancelling] = useState('')
   const [confirming, setConfirming] = useState('')
+  const [completing, setCompleting] = useState('')
 
   const loadTurnos = useCallback(async () => {
     setError('')
@@ -42,6 +43,13 @@ export function AdminDashboard() {
     finally { setConfirming('') }
   }
 
+  async function complete(id) {
+    if (!window.confirm('¿Querés marcar este turno como completado?')) return
+    setCompleting(id); setError('')
+    try { await api.completarTurno(id); setLoading(true); await loadTurnos() } catch (err) { setError(err.message) }
+    finally { setCompleting('') }
+  }
+
   return (
     <section className="admin-content">
       <div className="admin-title-row"><div><p className="section-kicker">Agenda</p><h1>Turnos</h1><small className="date-readable">{formatArgentinaDateLong(date)}</small></div><div className="admin-filters"><Input id="turnos-date" label="Fecha" type="date" value={date} onChange={(e) => { setLoading(true); setDate(e.target.value) }} /><Input id="turnos-name" label="Buscar cliente" placeholder="Nombre" value={name} onChange={(e) => { setLoading(true); setName(e.target.value) }} /></div></div>
@@ -53,6 +61,7 @@ export function AdminDashboard() {
             <div className="turno-time">{String(turno.hora).slice(0, 5)}</div>
             <div className="turno-info"><strong>{turno.nombreCliente}</strong><span>{turno.servicio?.nombre || 'Servicio'} · {turno.telefonoCliente}</span><small className={`status status--${turno.estado}`}>{turno.estado}</small></div>
             {turno.estado === 'pendiente' && <Button variant="text" disabled={confirming === turno.id} onClick={() => confirm(turno.id)}>{confirming === turno.id ? '…' : 'Confirmar'}</Button>}
+            {turno.estado === 'confirmado' && <Button variant="text" disabled={completing === turno.id} onClick={() => complete(turno.id)}>{completing === turno.id ? '…' : 'Completar'}</Button>}
             {turno.estado !== 'cancelado' && <Button variant="text" disabled={cancelling === turno.id} onClick={() => cancel(turno.id)}>{cancelling === turno.id ? '…' : 'Cancelar'}</Button>}
           </article>)}
         </div>

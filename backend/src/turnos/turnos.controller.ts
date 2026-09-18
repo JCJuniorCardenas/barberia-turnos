@@ -2,6 +2,7 @@ import { BadRequestException, Controller, Get, Param, Patch, Post, Query, UseGua
 import { ApiBearerAuth, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { SkipThrottle, Throttle } from '@nestjs/throttler';
 import { AuthGuard } from '../auth/auth.guard.js';
+import { AdminGuard } from '../auth/admin.guard.js';
 import { CreateTurnoDto } from './dto/create-turno.dto.js';
 import { ListTurnosDto } from './dto/list-turnos.dto.js';
 import { TurnosService } from './turnos.service.js';
@@ -54,8 +55,14 @@ export class TurnosController {
   cancel(@Param('id') id: string) { return this.service.cancel(id); }
 
   @Patch(':id/confirmar')
-  @UseGuards(AuthGuard)
+  @UseGuards(AuthGuard, AdminGuard)
   @ApiBearerAuth()
   @ApiOperation({ summary: 'Confirmar un turno' })
   confirm(@Param('id') id: string) { return this.service.confirm(id); }
+
+  @Patch(':id/completar')
+  @UseGuards(AuthGuard, AdminGuard)
+  @ApiBearerAuth()
+  @ApiOperation({ summary: 'Marcar un turno como completado' })
+  complete(@Param('id') id: string) { return this.service.complete(id); }
 }

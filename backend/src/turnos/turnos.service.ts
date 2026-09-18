@@ -6,6 +6,7 @@ import { ServiciosService } from '../servicios/servicios.service.js';
 import { CreateTurnoDto } from './dto/create-turno.dto.js';
 import { EstadoTurno, Turno } from './entities/turno.entity.js';
 import { randomBytes } from 'node:crypto';
+import { FinanzasService } from '../finanzas/finanzas.service.js';
 
 const toMinutes = (time: string) => { const [h, m] = time.slice(0, 5).split(':').map(Number); return h * 60 + m; };
 const toTime = (minutes: number) => `${String(Math.floor(minutes / 60)).padStart(2, '0')}:${String(minutes % 60).padStart(2, '0')}`;
@@ -27,6 +28,7 @@ export class TurnosService {
     @InjectRepository(Turno) private readonly repository: Repository<Turno>,
     private readonly servicios: ServiciosService,
     private readonly horarios: HorariosService,
+    private readonly finanzas: FinanzasService,
   ) {}
 
   async availableSlots(fecha: string, servicioId: string): Promise<string[]> {
@@ -118,5 +120,16 @@ export class TurnosService {
     if (!turno) throw new NotFoundException('Turno no encontrado');
     turno.estado = EstadoTurno.CANCELADO;
     return this.repository.save(turno);
+  }
+
+  async complete(id: string): Promise<Turno> {
+    const turno = await this.repository.findOne({ where: { id }, relations: { servicio: true } });
+    if (!turno) throw new NotFoundException('Turno no encontrado');
+    if (turno.estado === EstadoTurno.CANCELADO) throw new BadRequestException('No se puede completar un turno cancelado');
+    if (turno.estado === EstadoTurno.COMPLETADO) return turno;
+    turno.estado = EstadoTurno.COMPLETADO;
+    const saved = await this.repository.save(turno);
+    await this.finanzas.createIngreso({ monto: Number(turno.servicio.precio), concepto: `${turno.servicio.nombre} — ${turno.nombreCliente}`, fecha: turno.fecha, turnoId: turno.id });
+    return saved;
   }
 }

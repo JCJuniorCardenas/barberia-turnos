@@ -27,6 +27,11 @@ h1 { font: 500 clamp(3.2rem, 16vw, 7.5rem)/.95 var(--font-display); letter-spaci
 .field input { background: transparent; border: 0; border-bottom: 1px solid var(--border); border-radius: 0; color: var(--text); outline: 0; padding: .75rem 0; width: 100%; }
 .field input:focus { border-color: var(--accent); }
 .date-readable { color: var(--text-muted); display: block; font-size: .75rem; margin-top: .45rem; text-transform: capitalize; }
+.finance-chart-card { background: var(--bg-alt); border: 1px solid var(--border); border-radius: 18px; margin: 1.5rem 0; padding: 1.25rem; }
+.finance-chart-heading { align-items: center; display: flex; justify-content: space-between; margin-bottom: .75rem; }
+.finance-chart-heading h2 { font-size: 1.35rem; margin: .15rem 0 0; }
+.finance-chart-heading > span { color: var(--text-muted); font-size: .8rem; }
+.finance-chart { height: 320px; width: 100%; }
 .field input[type='date'] { color-scheme: dark; }
 .time-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: .5rem; }
 .time-slot { background: transparent; border: 1px solid var(--border); color: var(--text); cursor: pointer; min-height: 44px; padding: .8rem .4rem; }

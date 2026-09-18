@@ -9,6 +9,7 @@ import { ServiciosModule } from './servicios/servicios.module.js';
 import { AuthModule } from './auth/auth.module.js';
 import { HorariosModule } from './horarios/horarios.module.js';
 import { TurnosModule } from './turnos/turnos.module.js';
+import { FinanzasModule } from './finanzas/finanzas.module.js';
 
 @Module({
   imports: [
@@ -35,6 +36,7 @@ import { TurnosModule } from './turnos/turnos.module.js';
     AuthModule,
     HorariosModule,
     TurnosModule,
+    FinanzasModule,
   ],
   controllers: [AppController],
   providers: [AppService, { provide: APP_GUARD, useClass: ThrottlerGuard }],

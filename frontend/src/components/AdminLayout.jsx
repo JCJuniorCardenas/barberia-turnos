@@ -18,6 +18,7 @@ export function AdminLayout() {
         <NavLink to="/admin/dashboard">Turnos</NavLink>
         <NavLink to="/admin/horarios">Horarios</NavLink>
         <NavLink to="/admin/servicios">Servicios</NavLink>
+        <NavLink to="/admin/finanzas">Finanzas</NavLink>
       </nav>
       <Outlet />
     </main>
