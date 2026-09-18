@@ -28,6 +28,15 @@ h1 { font: 500 clamp(3.2rem, 16vw, 7.5rem)/.95 var(--font-display); letter-spaci
 .field input:focus { border-color: var(--accent); }
 .date-readable { color: var(--text-muted); display: block; font-size: .75rem; margin-top: .45rem; text-transform: capitalize; }
 .finance-chart-card { background: var(--bg-alt); border: 1px solid var(--border); border-radius: 18px; margin: 1.5rem 0; padding: 1.25rem; }
+.finance-page-title { margin-bottom: 2rem; }
+.finance-summary-cards { display: grid; gap: 1rem; grid-template-columns: repeat(3, minmax(0, 1fr)); margin-bottom: 1.5rem; }
+.finance-summary-card { background: #211f1c; border: 1px solid var(--border); border-radius: 16px; display: flex; flex-direction: column; gap: .55rem; min-width: 0; padding: 1.25rem; }
+.finance-summary-card span { color: var(--text-muted); font-size: .82rem; }
+.finance-summary-card strong { font-size: clamp(1.45rem, 3vw, 2rem); font-weight: 700; line-height: 1.1; }
+.finance-income { color: #10b981; }
+.finance-expense { color: #ef4444; }
+.finance-balance { color: var(--text); }
+@media (max-width: 640px) { .finance-summary-cards { grid-template-columns: 1fr; } }
 .finance-chart-heading { align-items: center; display: flex; justify-content: space-between; margin-bottom: .75rem; }
 .finance-chart-heading h2 { font-size: 1.35rem; margin: .15rem 0 0; }
 .finance-chart-heading > span { color: var(--text-muted); font-size: .8rem; }
