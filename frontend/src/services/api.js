@@ -1,4 +1,6 @@
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3000'
+// VITE_API_URL debe ser la URL pública del backend, incluyendo el prefijo si el
+// servidor está publicado detrás de /api (por ejemplo: https://api.example.com/api).
+const API_URL = (import.meta.env.VITE_API_URL || 'http://localhost:3000').replace(/\/$/, '')
 const TOKEN_KEY = 'elvasco_token'
 
 export function hasValidToken() {
@@ -22,7 +24,7 @@ async function request(path, options = {}, requiresAuth = false) {
 
   let response
   try {
-    response = await fetch(`${API_URL}${path}`, { ...options, headers })
+    response = await fetch(`${API_URL}${path.startsWith('/') ? path : `/${path}`}`, { ...options, headers })
   } catch {
     throw new Error('No pudimos conectar, revisá tu conexión e intentá de nuevo')
   }
@@ -56,9 +58,19 @@ export const api = {
   getTurnosSummary: (date) => request(`/turnos/resumen?fecha=${encodeURIComponent(date)}`, {}, true),
   cancelarTurno: (id) => request(`/turnos/${id}/cancelar`, { method: 'PATCH' }, true),
   confirmarTurno: (id) => request(`/turnos/${id}/confirmar`, { method: 'PATCH' }, true),
-  completarTurno: (id) => request(`/turnos/${id}/completar`, { method: 'PATCH' }, true),
-  getMovimientos: (fechaDesde, fechaHasta) => request(`/finanzas/movimientos?fechaDesde=${encodeURIComponent(fechaDesde || '')}&fechaHasta=${encodeURIComponent(fechaHasta || '')}`, {}, true),
-  getBalance: (fechaDesde, fechaHasta) => request(`/finanzas/balance?fechaDesde=${encodeURIComponent(fechaDesde || '')}&fechaHasta=${encodeURIComponent(fechaHasta || '')}`, {}, true),
+  completarTurno: (id) => request(`/turnos/${encodeURIComponent(id)}/completar`, { method: 'PATCH' }, true),
+  getMovimientos: (fechaDesde, fechaHasta) => {
+    const params = new URLSearchParams()
+    if (fechaDesde) params.set('fechaDesde', fechaDesde)
+    if (fechaHasta) params.set('fechaHasta', fechaHasta)
+    return request(`/finanzas/movimientos${params.toString() ? `?${params}` : ''}`, {}, true)
+  },
+  getBalance: (fechaDesde, fechaHasta) => {
+    const params = new URLSearchParams()
+    if (fechaDesde) params.set('fechaDesde', fechaDesde)
+    if (fechaHasta) params.set('fechaHasta', fechaHasta)
+    return request(`/finanzas/balance${params.toString() ? `?${params}` : ''}`, {}, true)
+  },
   crearEgreso: (data) => request('/finanzas/egresos', { method: 'POST', body: JSON.stringify(data) }, true),
   crearServicio: (data) => request('/servicios', { method: 'POST', body: JSON.stringify(data) }, true),
   updateServicio: (id, data) => request(`/servicios/${id}`, { method: 'PATCH', body: JSON.stringify(data) }, true),
