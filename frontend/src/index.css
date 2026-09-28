@@ -5,7 +5,8 @@ html { background: var(--bg); }
 body {
   margin: 0;
   min-width: 320px;
-  background: var(--bg);
+  background: var(--gradient-hero), var(--bg);
+  background-attachment: fixed;
   color: var(--text);
   font-family: var(--font-functional);
 }
