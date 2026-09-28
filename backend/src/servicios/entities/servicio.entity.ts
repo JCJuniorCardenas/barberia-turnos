@@ -18,4 +18,8 @@ export class Servicio {
   @ApiProperty({ example: 8500, description: 'Precio en pesos' })
   @Column({ type: 'numeric', precision: 10, scale: 2 })
   precio!: number;
+
+  @ApiProperty({ example: true, description: 'Si el servicio se sigue ofreciendo' })
+  @Column({ type: 'boolean', default: true })
+  activo!: boolean;
 }

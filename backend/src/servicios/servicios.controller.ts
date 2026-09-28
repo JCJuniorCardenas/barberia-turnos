@@ -8,9 +8,13 @@ import {
   Param,
   Patch,
   Post,
+  Query,
+  UseGuards,
 } from '@nestjs/common';
-import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { SkipThrottle, Throttle } from '@nestjs/throttler';
+import { AdminGuard } from '../auth/admin.guard.js';
+import { AuthGuard } from '../auth/auth.guard.js';
 import { CreateServicioDto } from './dto/create-servicio.dto.js';
 import { UpdateServicioDto } from './dto/update-servicio.dto.js';
 import { Servicio } from './entities/servicio.entity.js';
@@ -23,6 +27,8 @@ export class ServiciosController {
 
   @Post()
   @SkipThrottle()
+  @UseGuards(AuthGuard, AdminGuard)
+  @ApiBearerAuth()
   @ApiOperation({ summary: 'Crear un servicio' })
   @ApiResponse({ status: 201, type: Servicio })
   create(@Body() createServicioDto: CreateServicioDto): Promise<Servicio> {
@@ -33,8 +39,8 @@ export class ServiciosController {
   @Throttle({ default: { limit: 20, ttl: 60000 } })
   @ApiOperation({ summary: 'Listar servicios' })
   @ApiResponse({ status: 200, type: [Servicio] })
-  findAll(): Promise<Servicio[]> {
-    return this.serviciosService.findAll();
+  findAll(@Query('incluirInactivos') incluirInactivos?: string): Promise<Servicio[]> {
+    return this.serviciosService.findAll(incluirInactivos === 'true');
   }
 
   @Get(':id')
@@ -46,6 +52,8 @@ export class ServiciosController {
 
   @Patch(':id')
   @SkipThrottle()
+  @UseGuards(AuthGuard, AdminGuard)
+  @ApiBearerAuth()
   @ApiOperation({ summary: 'Actualizar un servicio' })
   update(
     @Param('id') id: string,
@@ -56,6 +64,8 @@ export class ServiciosController {
 
   @Delete(':id')
   @SkipThrottle()
+  @UseGuards(AuthGuard, AdminGuard)
+  @ApiBearerAuth()
   @HttpCode(HttpStatus.NO_CONTENT)
   @ApiOperation({ summary: 'Eliminar un servicio' })
   remove(@Param('id') id: string): Promise<void> {

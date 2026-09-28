@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Button } from '../components/Button'
 import { Input } from '../components/Input'
+import { Reveal } from '../components/Reveal'
 import { api } from '../services/api'
 import { formatArgentinaDateLong } from '../utils/date'
 
@@ -65,18 +66,20 @@ export function AdminHorarios() {
       {error && <p className="error-message" role="alert">{error}</p>}
       {loading ? <p className="loading-state"><span className="loading-spinner" aria-hidden="true" />Cargando horarios…</p> : <>
         <div className="hours-list">
-          {hours.sort((a, b) => a.diaSemana - b.diaSemana).map((item) => (
-            <article className={`hours-item ${item.cerrado ? 'hours-item--closed' : ''}`} key={item.diaSemana}>
+          {hours.sort((a, b) => a.diaSemana - b.diaSemana).map((item, index) => (
+            <Reveal as="article" delay={index * 40} className={`hours-item ${item.cerrado ? 'hours-item--closed' : ''}`} key={item.diaSemana}>
               <div className="hours-day"><strong>{days[item.diaSemana]}</strong><label className="toggle"><input type="checkbox" checked={item.cerrado} onChange={(e) => update(item.diaSemana, 'cerrado', e.target.checked)} /><span>Cerrado</span></label></div>
               <div className="hours-fields"><Input id={`start-${item.diaSemana}`} label="Desde" type="time" value={item.horaInicio} disabled={item.cerrado} onChange={(e) => update(item.diaSemana, 'horaInicio', e.target.value)} /><Input id={`end-${item.diaSemana}`} label="Hasta" type="time" value={item.horaFin} disabled={item.cerrado} onChange={(e) => update(item.diaSemana, 'horaFin', e.target.value)} /></div>
               <Button onClick={() => save(item)} disabled={saving === item.diaSemana}>{saving === item.diaSemana ? 'Guardando…' : 'Guardar'}</Button>
-            </article>
+            </Reveal>
           ))}
         </div>
         <section className="block-day-section">
           <h2>Bloquear un día</h2>
           <form className="form-row" onSubmit={blockDay}><Input id="blocked-date" label="Fecha" type="date" value={blockedDate} onChange={(e) => setBlockedDate(e.target.value)} required /><Input id="blocked-reason" label="Motivo (opcional)" placeholder="Vacaciones" value={blockedReason} onChange={(e) => setBlockedReason(e.target.value)} /><Button type="submit">Bloquear día</Button></form>
-          <div className="blocked-days-list">{blockedDays.map((item) => <div className="admin-list-item" key={item.id}><div><strong>{formatArgentinaDateLong(item.fecha)}</strong><span>{item.motivo || 'Día cerrado'}</span></div><Button variant="text" onClick={() => unblockDay(item.fecha)}>Desbloquear</Button></div>)}</div>
+          {blockedDays.length === 0 ? <p className="empty-state">No hay días bloqueados próximamente.</p> : (
+            <div className="blocked-days-list">{blockedDays.map((item, index) => <Reveal as="div" delay={index * 40} className="admin-list-item" key={item.id}><div><strong>{formatArgentinaDateLong(item.fecha)}</strong><span>{item.motivo || 'Día cerrado'}</span></div><Button variant="text" onClick={() => unblockDay(item.fecha)}>Desbloquear</Button></Reveal>)}</div>
+          )}
         </section>
       </>}
     </section>

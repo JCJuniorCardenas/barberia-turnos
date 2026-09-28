@@ -25,6 +25,15 @@ export function formatArgentinaDateLong(fecha) {
   }).format(argentinaDateValue(fecha))
 }
 
+export function getArgentinaNowLabel() {
+  return new Intl.DateTimeFormat('en', {
+    timeZone: 'America/Argentina/Buenos_Aires',
+    hour: '2-digit',
+    minute: '2-digit',
+    hour12: false,
+  }).format(new Date())
+}
+
 export function formatArgentinaDateShort(fecha) {
   if (!fecha) return ''
   return new Intl.DateTimeFormat('es-AR', {
