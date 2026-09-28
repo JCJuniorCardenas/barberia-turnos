@@ -122,7 +122,7 @@ export function Booking() {
     return (
       <main className="booking-shell confirmation-screen">
         <p className="brand-mark">EL VASCO</p>
-        <div className="confirmation-content">
+        <Reveal className="confirmation-content">
           <span className="confirmation-mark" aria-hidden="true">✓</span>
           <h1>Tu turno está reservado.</h1>
           <p>Solo falta enviarnos la confirmación por WhatsApp.</p>
@@ -135,7 +135,7 @@ export function Booking() {
             Confirmar por WhatsApp
           </a>
           <a className="booking-link" href={myBookingUrl}>Guardá este link para ver o cancelar tu turno más adelante</a>
-        </div>
+        </Reveal>
       </main>
     )
   }
@@ -159,7 +159,7 @@ export function Booking() {
           {error && <div className="error-message" role="alert"><p>{error}</p><button className="button button--text retry-button" type="button" onClick={retry}>Reintentar</button></div>}
 
           {step === 1 && (
-            <div className="step-content" key="step-1">
+            <Reveal as="div" className="step-content" key="step-1">
               <div className="step-heading"><span>Elegí tu servicio</span><small>El comienzo</small></div>
               {loading ? <p className="loading-state"><span className="loading-spinner" aria-hidden="true" />Cargando servicios…</p> : services.length === 0 ? (
                 <p className="empty-state">Por ahora no hay servicios disponibles. Probá de nuevo más tarde.</p>
@@ -172,26 +172,26 @@ export function Booking() {
                   ))}
                 </div>
               )}
-            </div>
+            </Reveal>
           )}
 
           {step === 2 && (
-            <div className="step-content" key="step-2">
+            <Reveal as="div" className="step-content" key="step-2">
               <div className="step-heading"><span>Elegí fecha y hora</span><small>{service?.nombre}</small></div>
               <label className="field" htmlFor="date"><span>Fecha</span><input id="date" type="date" min={today} value={date} onChange={selectDate} /><small className="date-readable">{formatArgentinaDateLong(date)}</small></label>
               <div className="slot-heading"><span>Horarios disponibles</span>{slotsLoading && <small className="loading-inline"><span className="loading-spinner" aria-hidden="true" />Cargando…</small>}</div>
               {!slotsLoading && slots.length === 0 && <p className="empty-state">No hay horarios libres ese día. Probá con otra fecha.</p>}
               <TimeSlotPicker slots={slots} selected={time} onSelect={setTime} />
-            </div>
+            </Reveal>
           )}
 
           {step === 3 && (
-            <div className="step-content" key="step-3">
+            <Reveal as="div" className="step-content" key="step-3">
               <div className="step-heading"><span>Dejanos tus datos</span><small>Para guardar tu turno</small></div>
               <Input id="nombre" name="nombre" label="Nombre" placeholder="Tu nombre" value={form.nombre} onChange={handleFormChange} autoComplete="name" required />
               <Input id="telefono" name="telefono" label="Teléfono" type="tel" placeholder="1123456789" value={form.telefono} onChange={handleFormChange} autoComplete="tel" required />
               <div className="summary"><span>{service?.nombre}</span><span>{formatArgentinaDateLong(date)} · {time}</span></div>
-            </div>
+            </Reveal>
           )}
 
           <div className="form-actions">

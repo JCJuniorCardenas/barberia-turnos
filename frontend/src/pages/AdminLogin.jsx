@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { Button } from '../components/Button'
 import { Input } from '../components/Input'
+import { Reveal } from '../components/Reveal'
 import { api, hasValidToken, TOKEN_KEY } from '../services/api'
 
 export function AdminLogin() {
@@ -28,7 +29,7 @@ export function AdminLogin() {
 
   return (
     <main className="admin-login">
-      <div className="admin-login__content">
+      <Reveal className="admin-login__content">
         <p className="brand-mark">EL VASCO</p>
         <h1>Ingresá al panel.</h1>
         <p className="admin-intro">Gestioná tus turnos y la agenda de la barbería.</p>
@@ -38,7 +39,7 @@ export function AdminLogin() {
           {error && <p className="error-message" role="alert">{error}</p>}
           <Button type="submit" disabled={loading}>{loading ? 'Ingresando…' : 'Iniciar sesión'}</Button>
         </form>
-      </div>
+      </Reveal>
     </main>
   )
 }

@@ -3,10 +3,17 @@
 :root {
   --bg: #111110;
   --bg-alt: #1b1a18;
+  --bg-raised: #211f1c;
   --text: #f2ece4;
   --text-muted: #a8a29a;
-  --accent: #a63d2f;
+  --accent: #c2492f;
+  --accent-strong: #e05a3a;
+  --accent-warm: #e3a94a;
+  --accent-soft: rgba(194, 73, 47, .14);
+  --accent-glow: rgba(224, 90, 58, .35);
   --border: #2a2926;
+  --gradient-hero: radial-gradient(120% 140% at 15% 0%, #3a241c 0%, #1b1512 45%, #111110 80%);
+  --gradient-accent: linear-gradient(135deg, var(--accent) 0%, var(--accent-warm) 100%);
   --font-display: 'Fraunces', Georgia, serif;
   --font-functional: 'Inter', Arial, sans-serif;
 }
