@@ -61,7 +61,7 @@ export function AdminHorarios() {
 
   return (
     <section className="admin-content">
-      <div className="admin-title-row"><div><p className="section-kicker">Configuración</p><h1>Horarios</h1></div></div>
+      <Reveal className="admin-title-row"><div><p className="section-kicker">Configuración</p><h1>Horarios</h1></div></Reveal>
       {message && <p className="success-message" role="status">{message}</p>}
       {error && <p className="error-message" role="alert">{error}</p>}
       {loading ? <p className="loading-state"><span className="loading-spinner" aria-hidden="true" />Cargando horarios…</p> : <>
@@ -74,13 +74,13 @@ export function AdminHorarios() {
             </Reveal>
           ))}
         </div>
-        <section className="block-day-section">
+        <Reveal as="section" className="block-day-section">
           <h2>Bloquear un día</h2>
           <form className="form-row" onSubmit={blockDay}><Input id="blocked-date" label="Fecha" type="date" value={blockedDate} onChange={(e) => setBlockedDate(e.target.value)} required /><Input id="blocked-reason" label="Motivo (opcional)" placeholder="Vacaciones" value={blockedReason} onChange={(e) => setBlockedReason(e.target.value)} /><Button type="submit">Bloquear día</Button></form>
           {blockedDays.length === 0 ? <p className="empty-state">No hay días bloqueados próximamente.</p> : (
             <div className="blocked-days-list">{blockedDays.map((item, index) => <Reveal as="div" delay={index * 40} className="admin-list-item" key={item.id}><div><strong>{formatArgentinaDateLong(item.fecha)}</strong><span>{item.motivo || 'Día cerrado'}</span></div><Button variant="text" onClick={() => unblockDay(item.fecha)}>Desbloquear</Button></Reveal>)}</div>
           )}
-        </section>
+        </Reveal>
       </>}
     </section>
   )

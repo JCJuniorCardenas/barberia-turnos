@@ -200,6 +200,9 @@ export function Booking() {
           </div>
         </form>
       </section>
+      <footer className="public-footer">
+        <a href="/admin/login">Acceso administrador</a>
+      </footer>
     </main>
   )
 }

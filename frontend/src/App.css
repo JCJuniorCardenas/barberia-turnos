@@ -9,14 +9,14 @@
   .hero-image { transform: none !important; }
 }
 .booking-shell { max-width: 1180px; margin: 0 auto; min-height: 100vh; }
-.hero { background: var(--gradient-hero); display: grid; grid-template-columns: 1fr; gap: 2rem; padding: 1rem; position: relative; }
-.hero-image { border-radius: 20px; box-shadow: 0 30px 60px -20px rgba(0,0,0,.6), 0 0 0 1px rgba(227,169,74,.12); min-height: 240px; background: linear-gradient(145deg, #403831, #191816 65%); overflow: hidden; position: relative; }
-.hero-image img { filter: sepia(.35) saturate(1.4) contrast(1.08) brightness(.85); height: 100%; object-fit: cover; position: absolute; width: 100%; }
-.hero-image::before { content: ''; position: absolute; inset: 0; background: linear-gradient(0deg, rgba(17,17,16,.55) 0%, transparent 45%); }
-.hero-image::after { content: 'foto de ambiente'; position: absolute; inset: auto 1rem 1rem; color: var(--text-muted); font-size: .7rem; letter-spacing: .08em; text-transform: uppercase; z-index: 1; }
-.hero-copy { padding: .5rem 0 1.5rem; }
+.hero { align-items: flex-end; display: flex; min-height: min(78vh, 560px); overflow: hidden; padding: 1.5rem 1rem 2.5rem; position: relative; }
+.hero-image { inset: 0; overflow: hidden; position: absolute; z-index: 0; }
+.hero-image img { filter: sepia(.35) saturate(1.2) contrast(1.02) brightness(.55); height: 100%; object-fit: cover; opacity: .55; position: absolute; width: 100%; }
+.hero-image::before { background: linear-gradient(180deg, rgba(17,17,16,.7) 0%, rgba(17,17,16,.35) 30%, rgba(17,17,16,.45) 65%, rgba(17,17,16,.96) 100%), radial-gradient(120% 90% at 50% 40%, transparent 35%, rgba(17,17,16,.55) 85%, rgba(17,17,16,.85) 100%); content: ''; inset: 0; position: absolute; }
+.hero-image::after { color: rgba(242,236,228,.4); content: 'foto de ambiente'; font-size: .68rem; inset: auto 1rem 1rem auto; letter-spacing: .08em; position: absolute; text-transform: uppercase; }
+.hero-copy { position: relative; z-index: 1; }
 .brand-mark { background: var(--gradient-accent); -webkit-background-clip: text; background-clip: text; color: transparent; font-size: .75rem; font-weight: 700; letter-spacing: .18em; margin: 0 0 2.5rem; }
-h1 { font: 500 clamp(3.2rem, 16vw, 7.5rem)/.95 var(--font-display); letter-spacing: -.055em; margin: 0; max-width: 8ch; }
+h1 { font: 500 clamp(3.2rem, 16vw, 7.5rem)/.95 var(--font-display); letter-spacing: -.055em; margin: 0; max-width: 8ch; text-shadow: 0 4px 24px rgba(0,0,0,.35); }
 .hero-copy > p:last-child { color: var(--text-muted); line-height: 1.6; margin: 1.5rem 0 0; max-width: 24ch; }
 .booking-panel { background: var(--bg-alt); padding: 2rem 1rem 3rem; }
 .progress { background: var(--border); border-radius: 4px; height: 4px; margin-bottom: 2.5rem; overflow: hidden; }
@@ -90,10 +90,8 @@ h1 { font: 500 clamp(3.2rem, 16vw, 7.5rem)/.95 var(--font-display); letter-spaci
 .booking-link { color: var(--text-muted); display: block; font-size: .75rem; line-height: 1.5; margin-top: 1rem; max-width: 28rem; }
 @media (prefers-reduced-motion: reduce) { .loading-spinner { animation: none; } }
 @media (min-width: 700px) {
-  .hero { align-items: end; grid-template-columns: 1fr 1fr; min-height: 480px; padding: 2.5rem; }
-  .hero-image { grid-column: 2; grid-row: 1; min-height: 440px; }
-  .hero-copy { grid-column: 1; grid-row: 1; padding: 0 0 2rem; }
-  .booking-panel { margin-left: 25%; padding: 3rem 25% 5rem 3rem; }
+  .hero { min-height: 92vh; padding: 3rem; }
+  .booking-panel { margin: 0 auto; max-width: 640px; padding: 3rem 0 5rem; }
 }
 
 .admin-shell { max-width: 1180px; margin: 0 auto; min-height: 100vh; padding: 1rem; }
@@ -150,6 +148,11 @@ h1 { font: 500 clamp(3.2rem, 16vw, 7.5rem)/.95 var(--font-display); letter-spaci
 .admin-intro { color: var(--text-muted); line-height: 1.6; margin: 1.5rem 0 3rem; max-width: 25ch; }
 .admin-login .button { margin-top: .5rem; }
 
+.public-footer { padding: 2rem 1rem 3rem; text-align: center; }
+.public-footer a { color: var(--text-muted); font-size: .72rem; letter-spacing: .04em; text-decoration: none; }
+.public-footer a:hover { color: var(--accent-warm); }
+.install-hint { background: var(--accent-soft); border: 1px solid var(--border); border-radius: 12px; font-size: .78rem; line-height: 1.6; margin: 2rem 0 0; padding: 1rem 1.1rem; }
+.install-hint strong { color: var(--accent-warm); display: block; margin-bottom: .35rem; }
 .service-admin-item--inactivo { opacity: .5; }
 .admin-list-item--pasado { opacity: .45; }
 .admin-quick-actions { display: flex; gap: .75rem; margin-bottom: 1rem; }

@@ -11,10 +11,29 @@ export function AdminLogin() {
   const [form, setForm] = useState({ email: '', password: '' })
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
+  const [installPrompt, setInstallPrompt] = useState(null)
+  const isStandalone = typeof window !== 'undefined' && window.matchMedia?.('(display-mode: standalone)').matches
+  const isIos = typeof navigator !== 'undefined' && /iphone|ipad|ipod/i.test(navigator.userAgent)
 
   useEffect(() => {
     if (hasValidToken()) navigate('/admin/dashboard', { replace: true })
   }, [navigate])
+
+  useEffect(() => {
+    function onBeforeInstallPrompt(event) {
+      event.preventDefault()
+      setInstallPrompt(event)
+    }
+    window.addEventListener('beforeinstallprompt', onBeforeInstallPrompt)
+    return () => window.removeEventListener('beforeinstallprompt', onBeforeInstallPrompt)
+  }, [])
+
+  async function installApp() {
+    if (!installPrompt) return
+    installPrompt.prompt()
+    await installPrompt.userChoice
+    setInstallPrompt(null)
+  }
 
   async function handleSubmit(event) {
     event.preventDefault()
@@ -39,6 +58,19 @@ export function AdminLogin() {
           {error && <p className="error-message" role="alert">{error}</p>}
           <Button type="submit" disabled={loading}>{loading ? 'Ingresando…' : 'Iniciar sesión'}</Button>
         </form>
+        {!isStandalone && installPrompt && (
+          <p className="install-hint">
+            <strong>Tip</strong>
+            Instalá esta página como app en tu celular y entrá con un toque, sin buscar el link.
+            <br /><Button variant="text" onClick={installApp}>Instalar app</Button>
+          </p>
+        )}
+        {!isStandalone && !installPrompt && isIos && (
+          <p className="install-hint">
+            <strong>Tip</strong>
+            En Safari, tocá compartir → &quot;Agregar a pantalla de inicio&quot; para entrar con un toque la próxima vez.
+          </p>
+        )}
       </Reveal>
     </main>
   )
