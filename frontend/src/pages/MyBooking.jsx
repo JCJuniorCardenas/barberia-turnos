@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { Button } from '../components/Button'
+import { Reveal } from '../components/Reveal'
 import { api } from '../services/api'
 import { formatArgentinaDateLong } from '../utils/date'
 
@@ -25,9 +26,9 @@ export function MyBooking() {
     finally { setCancelling(false) }
   }
 
-  if (loading) return <main className="booking-shell confirmation-screen"><div className="confirmation-content"><span className="loading-spinner" aria-label="Cargando" /></div></main>
-  if (error || !booking) return <main className="booking-shell confirmation-screen"><div className="confirmation-content"><p className="brand-mark">EL VASCO</p><h1>No encontramos ese turno.</h1><p>Revisá el link e intentá nuevamente.</p><a className="button button--primary" href="/">Volver a reservar</a></div></main>
+  if (loading) return <main className="booking-shell confirmation-screen"><Reveal className="confirmation-content"><span className="loading-spinner" aria-label="Cargando" /></Reveal></main>
+  if (error || !booking) return <main className="booking-shell confirmation-screen"><Reveal className="confirmation-content"><p className="brand-mark">EL VASCO</p><h1>No encontramos ese turno.</h1><p>Revisá el link e intentá nuevamente.</p><a className="button button--primary" href="/">Volver a reservar</a></Reveal></main>
 
   const canCancel = ['pendiente', 'confirmado'].includes(booking.estado)
-  return <main className="booking-shell confirmation-screen"><div className="confirmation-content"><p className="brand-mark">EL VASCO</p><span className="confirmation-mark" aria-hidden="true">✓</span><h1>Tu turno</h1><div className="summary summary--confirmed"><strong>{booking.servicio.nombre}</strong><span>{formatArgentinaDateLong(booking.fecha)} · {String(booking.hora).slice(0, 5)}</span><span className={`status status--${booking.estado}`}>{booking.estado}</span></div>{error && <p className="error-message" role="alert">{error}</p>}{canCancel && <Button variant="text" disabled={cancelling} onClick={cancel}>{cancelling ? 'Cancelando…' : 'Cancelar mi turno'}</Button>}</div></main>
+  return <main className="booking-shell confirmation-screen"><Reveal className="confirmation-content"><p className="brand-mark">EL VASCO</p><span className="confirmation-mark" aria-hidden="true">✓</span><h1>Tu turno</h1><div className="summary summary--confirmed"><strong>{booking.servicio.nombre}</strong><span>{formatArgentinaDateLong(booking.fecha)} · {String(booking.hora).slice(0, 5)}</span><span className={`status status--${booking.estado}`}>{booking.estado}</span></div>{error && <p className="error-message" role="alert">{error}</p>}{canCancel && <Button variant="text" disabled={cancelling} onClick={cancel}>{cancelling ? 'Cancelando…' : 'Cancelar mi turno'}</Button>}</Reveal></main>
 }
