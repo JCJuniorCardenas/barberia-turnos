@@ -56,9 +56,9 @@ export function AdminDashboard() {
 
   return (
     <section className="admin-content">
-      <div className="admin-title-row"><div><p className="section-kicker">Agenda</p><h1>Turnos</h1><small className="date-readable">{formatArgentinaDateLong(date)}</small></div><div className="admin-filters"><Input id="turnos-date" label="Fecha" type="date" value={date} onChange={(e) => { setLoading(true); setDate(e.target.value) }} /><Input id="turnos-name" label="Buscar cliente" placeholder="Nombre" value={name} onChange={(e) => { setLoading(true); setName(e.target.value) }} /></div></div>
+      <Reveal className="admin-title-row"><div><p className="section-kicker">Agenda</p><h1>Turnos</h1><small className="date-readable">{formatArgentinaDateLong(date)}</small></div><div className="admin-filters"><Input id="turnos-date" label="Fecha" type="date" value={date} onChange={(e) => { setLoading(true); setDate(e.target.value) }} /><Input id="turnos-name" label="Buscar cliente" placeholder="Nombre" value={name} onChange={(e) => { setLoading(true); setName(e.target.value) }} /></div></Reveal>
       {!isToday && <div className="admin-quick-actions"><Button variant="text" onClick={() => { setLoading(true); setDate(today) }}>Volver a hoy</Button></div>}
-      <div className="summary-counters" aria-label="Resumen de turnos"><span><strong>{summary.total}</strong> turnos</span><span><strong>{summary.pendientes}</strong> pendientes</span><span><strong>{summary.confirmados}</strong> confirmados</span></div>
+      <Reveal delay={80} as="div" className="summary-counters" aria-label="Resumen de turnos"><span><strong>{summary.total}</strong> turnos</span><span><strong>{summary.pendientes}</strong> pendientes</span><span><strong>{summary.confirmados}</strong> confirmados</span></Reveal>
       {error && <p className="error-message" role="alert">{error}</p>}
       {loading ? <p className="loading-state"><span className="loading-spinner" aria-hidden="true" />Cargando turnos…</p> : turnos.length === 0 ? (
         <p className="empty-state">{name ? `No hay turnos para "${name}" en esta fecha.` : 'No hay turnos para esta fecha.'}</p>

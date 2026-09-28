@@ -150,6 +150,11 @@ h1 { font: 500 clamp(3.2rem, 16vw, 7.5rem)/.95 var(--font-display); letter-spaci
 .admin-intro { color: var(--text-muted); line-height: 1.6; margin: 1.5rem 0 3rem; max-width: 25ch; }
 .admin-login .button { margin-top: .5rem; }
 
+.public-footer { padding: 2rem 1rem 3rem; text-align: center; }
+.public-footer a { color: var(--text-muted); font-size: .72rem; letter-spacing: .04em; text-decoration: none; }
+.public-footer a:hover { color: var(--accent-warm); }
+.install-hint { background: var(--accent-soft); border: 1px solid var(--border); border-radius: 12px; font-size: .78rem; line-height: 1.6; margin: 2rem 0 0; padding: 1rem 1.1rem; }
+.install-hint strong { color: var(--accent-warm); display: block; margin-bottom: .35rem; }
 .service-admin-item--inactivo { opacity: .5; }
 .admin-list-item--pasado { opacity: .45; }
 .admin-quick-actions { display: flex; gap: .75rem; margin-bottom: 1rem; }
