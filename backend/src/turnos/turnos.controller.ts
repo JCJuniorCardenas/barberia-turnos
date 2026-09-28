@@ -49,7 +49,7 @@ export class TurnosController {
 
   @Patch(':id/cancelar')
   @SkipThrottle()
-  @UseGuards(AuthGuard)
+  @UseGuards(AuthGuard, AdminGuard)
   @ApiBearerAuth()
   @ApiOperation({ summary: 'Cancelar un turno' })
   cancel(@Param('id') id: string) { return this.service.cancel(id); }

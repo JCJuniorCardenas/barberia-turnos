@@ -3,8 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { CreateEgresoDto } from './dto/create-egreso.dto.js';
 import { Movimiento, TipoMovimiento } from './entities/movimiento.entity.js';
-
-const argentinaToday = () => new Intl.DateTimeFormat('en-CA', { timeZone: 'America/Argentina/Buenos_Aires' }).format(new Date());
+import { argentinaToday } from '../common/utils/argentina-date.js';
 
 @Injectable()
 export class FinanzasService {
