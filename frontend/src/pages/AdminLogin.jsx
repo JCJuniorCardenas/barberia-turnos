@@ -39,7 +39,7 @@ export function AdminLogin() {
     event.preventDefault()
     setLoading(true); setError('')
     try {
-      const { access_token: token } = await api.login(form)
+      const { access_token: token } = await api.login({ email: form.email.trim(), password: form.password.trim() })
       localStorage.setItem(TOKEN_KEY, token)
       navigate(location.state?.from?.pathname || '/admin/dashboard', { replace: true })
     } catch (err) { setError(err.message === 'No se pudo completar la solicitud.' ? 'Email o contraseña incorrectos' : err.message) }
@@ -53,8 +53,8 @@ export function AdminLogin() {
         <h1>Ingresá al panel.</h1>
         <p className="admin-intro">Gestioná tus turnos y la agenda de la barbería.</p>
         <form onSubmit={handleSubmit}>
-          <Input id="email" label="Email" type="email" value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} autoComplete="email" required />
-          <Input id="password" label="Contraseña" type="password" value={form.password} onChange={(e) => setForm({ ...form, password: e.target.value })} autoComplete="current-password" required />
+          <Input id="email" label="Email" type="email" value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} autoComplete="email" autoCapitalize="none" autoCorrect="off" spellCheck="false" required />
+          <Input id="password" label="Contraseña" type="password" value={form.password} onChange={(e) => setForm({ ...form, password: e.target.value })} autoComplete="current-password" autoCapitalize="none" autoCorrect="off" spellCheck="false" required />
           {error && <p className="error-message" role="alert">{error}</p>}
           <Button type="submit" disabled={loading}>{loading ? 'Ingresando…' : 'Iniciar sesión'}</Button>
         </form>
