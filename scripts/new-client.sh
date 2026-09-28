@@ -65,8 +65,12 @@ cat > "$OUT_DIR/CHECKLIST.md" <<EOF
 - [ ] Revisar la paleta de colores en \`frontend/src/styles/tokens.css\` si el cliente pide otra identidad
 
 ## 3. Backend
-- [ ] Correr las migraciones (se aplican solas al iniciar en producción)
-- [ ] Correr \`npm run seed:admin\` una vez para crear el usuario administrador
+- [ ] Verificar que \`NODE_ENV=production\` esté seteado (las migraciones Y el
+      usuario administrador se crean solos al arrancar con esa variable —
+      no hace falta correr ningún comando a mano)
+- [ ] Revisar los logs del primer arranque: debe decir
+      "Usuario administrador verificado: $ADMIN_EMAIL". Si dice que
+      ADMIN_EMAIL/ADMIN_PASSWORD no están configurados, revisar las env vars
 - [ ] Cargar los servicios y horarios reales desde el panel de admin
 
 ## 4. Entrega al dueño
@@ -80,8 +84,9 @@ cat > "$OUT_DIR/CHECKLIST.md" <<EOF
 - JWT_SECRET: (ver backend.env, no compartir)
 
 > Nota: todavía no existe una pantalla de "cambiar contraseña" en el panel.
-> Por ahora, si el dueño quiere otra contraseña, se la volvés a generar
-> corriendo \`npm run seed:admin\` de nuevo con un nuevo ADMIN_PASSWORD.
+> Por ahora, si el dueño quiere otra contraseña, cambiá ADMIN_PASSWORD en
+> las variables de entorno del backend y reiniciá el servicio — se
+> actualiza sola al arrancar, no hace falta correr ningún script.
 EOF
 
 echo ""
