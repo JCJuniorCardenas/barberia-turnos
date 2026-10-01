@@ -23,6 +23,10 @@ async function bootstrap() {
     }
   }
   const app = await NestFactory.create(AppModule);
+  // Render sirve la app detrás de un proxy (Cloudflare); sin esto, Express ve
+  // la IP del proxy para todas las requests y el rate-limit termina siendo
+  // compartido entre todos los visitantes en vez de por persona.
+  app.getHttpAdapter().getInstance().set('trust proxy', 1);
   const corsOrigins = (process.env.CORS_ORIGIN ?? '')
     .split(',')
     .map((origin) => origin.trim())
