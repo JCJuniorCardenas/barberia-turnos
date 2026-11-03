@@ -12,3 +12,12 @@ Son **provisorias**: reemplazar por trabajos reales de Fabián Díaz antes de pu
 | gallery/corte-1.webp | https://unsplash.com/photos/tgPrIYnW3g4 |
 | gallery/corte-2.webp | https://unsplash.com/photos/IvQeAVeJULw |
 | hero/hero-video.mp4 | https://www.pexels.com/video/barber-cutting-the-hair-of-the-customer-7686519/ (Pexels License, ArtHouse Studio) |
+| gallery/cabello-1.webp | https://unsplash.com/photos/S3GxGKyGPWM |
+| gallery/cabello-2.webp | https://unsplash.com/photos/jzA8LFPUOGY |
+| gallery/cabello-3.webp | https://unsplash.com/photos/5st86wYikQQ |
+| gallery/cabello-4.webp | https://unsplash.com/photos/YmaaUNbHHtw |
+| gallery/makeup-1.webp | https://unsplash.com/photos/I3y-aJ4DWng |
+| gallery/makeup-2.webp | https://unsplash.com/photos/PEttXYw9hi8 |
+| gallery/makeup-3.webp | https://unsplash.com/photos/yxcCgzSB_iI |
+| gallery/makeup-4.webp | https://unsplash.com/photos/tKUG1Ckuryw |
+| gallery/local.webp | https://unsplash.com/photos/AXurvQTtO3Y |

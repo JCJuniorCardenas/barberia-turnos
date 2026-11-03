@@ -187,3 +187,12 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
 @media (prefers-reduced-motion: reduce) {
   .hero-line > span, .hero-subtitle, .hero-actions, .scroll-indicator, .hero-slide { animation: none; }
 }
+
+/* Fotos laterales */
+.side-photo { border: 1px solid var(--accent-deep); display: block; height: 220px; margin-top: 1.5rem; object-fit: cover; object-position: center 25%; width: 100%; }
+.side-photo--wide { height: 200px; margin: 0 0 1rem; }
+.contact-side { display: grid; }
+@media (min-width: 900px) {
+  .side-photo { height: 340px; }
+  .side-photo--wide { height: 220px; }
+}

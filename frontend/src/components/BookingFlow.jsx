@@ -5,6 +5,7 @@ import { ProgressBar } from './ProgressBar'
 import { ServiceListItem } from './ServiceListItem'
 import { TimeSlotPicker } from './TimeSlotPicker'
 import { api } from '../services/api'
+import intro from '../assets/hero/hero-2.webp'
 import { getArgentinaToday } from '../utils/date'
 import { formatArgentinaDateLong } from '../utils/date'
 
@@ -127,6 +128,7 @@ export function BookingFlow({ request, onServicesLoaded }) {
           <p className="section-kicker">Reservar turno</p>
           <h2 className="section-title">Tu próximo corte,<br />a tu tiempo.</h2>
           <p className="section-text">Reservá tu turno en unos pocos pasos.</p>
+          <img className="side-photo" src={intro} alt="Barbero tatuado trabajando con navaja" width="1400" height="2096" loading="lazy" />
         </div>
 
         <div className="booking-panel" ref={panelRef}>
