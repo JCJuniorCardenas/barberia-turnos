@@ -179,3 +179,36 @@ html { scroll-behavior: smooth; scroll-padding-top: 4.5rem; }
   .floating-cta { display: none; }
   .site-footer { padding-bottom: 3rem; }
 }
+
+/* Reserva */
+.booking-section { background: radial-gradient(ellipse at 50% 0%, #1d160a 0%, var(--bg) 70%); }
+.booking-grid { display: grid; gap: 2rem; }
+.booking-panel { background: var(--surface); border: 1px solid var(--accent-deep); box-shadow: 0 0 60px color-mix(in srgb, var(--accent) 12%, transparent); margin: 0 auto; max-width: 560px; padding: 1.5rem 1.25rem 2rem; position: relative; width: 100%; }
+.progress { background: var(--border); height: 4px; margin-bottom: 2rem; overflow: hidden; }
+.progress span { background: linear-gradient(90deg, var(--accent-deep), var(--accent-strong)); box-shadow: 0 0 12px var(--accent); transition: width .45s cubic-bezier(.2, .7, .2, 1); }
+.step-content { animation: step-in .4s cubic-bezier(.2, .7, .2, 1) both; }
+.booking-panel .step-heading > span { font: 1.6rem var(--font-display); letter-spacing: .03em; text-transform: uppercase; }
+.booking-panel .service-item:hover strong { color: var(--accent-strong); }
+.booking-panel .time-slot { transition: background .15s ease, border-color .15s ease, transform .1s ease; }
+.booking-panel .time-slot:hover { border-color: var(--accent); }
+.booking-panel .time-slot:active, .booking-panel .service-item:active { transform: scale(.97); }
+.booking-panel .button--primary { font-weight: 600; letter-spacing: .1em; text-transform: uppercase; transition: background .2s ease, box-shadow .25s ease, transform .15s ease; }
+.booking-panel .button--primary:hover:not(:disabled) { background: var(--accent-strong); box-shadow: 0 0 24px color-mix(in srgb, var(--accent) 50%, transparent); }
+.booking-panel .button--primary:active:not(:disabled) { transform: scale(.96); }
+.booking-panel .confirmation-content { padding: 1rem 0; }
+.booking-panel .confirmation-content h3 { font: 2.6rem/1 var(--font-display); margin: 0 0 1rem; text-transform: uppercase; }
+.confirmation-check { display: block; height: 72px; margin-bottom: 1.25rem; width: 72px; }
+.confirmation-check circle { fill: none; stroke: var(--accent); stroke-dasharray: 151; stroke-dashoffset: 151; stroke-width: 2; animation: check-draw .6s ease-out forwards; }
+.confirmation-check path { fill: none; stroke: var(--accent-strong); stroke-dasharray: 40; stroke-dashoffset: 40; stroke-linecap: round; stroke-linejoin: round; stroke-width: 3; animation: check-draw .4s .5s ease-out forwards; }
+@keyframes step-in { from { opacity: 0; transform: translateX(18px); } to { opacity: 1; transform: none; } }
+@keyframes check-draw { to { stroke-dashoffset: 0; } }
+
+@media (min-width: 900px) {
+  .booking-grid { align-items: start; grid-template-columns: 5fr 6fr; }
+  .booking-intro { position: sticky; top: 6rem; }
+  .booking-panel { padding: 2rem 2rem 2.5rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .step-content { animation: none; }
+  .confirmation-check circle, .confirmation-check path { animation: none; stroke-dashoffset: 0; }
+}

@@ -1,14 +1,7 @@
 #root { min-height: 100vh; }
 .booking-shell { max-width: 1180px; margin: 0 auto; min-height: 100vh; }
-.hero { display: grid; grid-template-columns: 1fr; gap: 2rem; padding: 1rem; }
-.hero-image { min-height: 240px; background: linear-gradient(145deg, #403831, #191816 65%); overflow: hidden; position: relative; }
-.hero-image img { filter: grayscale(1) contrast(1.1); height: 100%; object-fit: cover; position: absolute; width: 100%; }
-.hero-image::after { content: 'foto de ambiente'; position: absolute; inset: auto 1rem 1rem; color: var(--text-muted); font-size: .7rem; letter-spacing: .08em; text-transform: uppercase; }
-.hero-copy { padding: .5rem 0 1.5rem; }
 .brand-mark { color: var(--accent); font-size: .75rem; font-weight: 600; letter-spacing: .18em; margin: 0 0 2.5rem; }
 h1 { font: 500 clamp(3.2rem, 16vw, 7.5rem)/.95 var(--font-display); letter-spacing: -.055em; margin: 0; max-width: 8ch; }
-.hero-copy > p:last-child { color: var(--text-muted); line-height: 1.6; margin: 1.5rem 0 0; max-width: 24ch; }
-.booking-panel { background: var(--bg-alt); padding: 2rem 1rem 3rem; }
 .progress { background: var(--border); height: 2px; margin-bottom: 2.5rem; }
 .progress span { background: var(--accent); display: block; height: 100%; transition: width .3s ease; }
 .step-heading, .slot-heading { display: flex; justify-content: space-between; gap: 1rem; align-items: baseline; margin-bottom: 1.5rem; }
@@ -71,12 +64,6 @@ h1 { font: 500 clamp(3.2rem, 16vw, 7.5rem)/.95 var(--font-display); letter-spaci
 .booking-link { color: var(--text-muted); display: block; font-size: .75rem; line-height: 1.5; margin-top: 1rem; max-width: 28rem; }
 @keyframes confirmation-enter { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 @media (prefers-reduced-motion: reduce) { .confirmation-content, .loading-spinner { animation: none; } }
-@media (min-width: 700px) {
-  .hero { align-items: end; grid-template-columns: 1fr 1fr; min-height: 480px; padding: 2.5rem; }
-  .hero-image { grid-column: 2; grid-row: 1; min-height: 440px; }
-  .hero-copy { grid-column: 1; grid-row: 1; padding: 0 0 2rem; }
-  .booking-panel { margin-left: 25%; padding: 3rem 25% 5rem 3rem; }
-}
 
 .admin-shell { max-width: 1180px; margin: 0 auto; min-height: 100vh; padding: 1rem; }
 .admin-header, .admin-nav, .admin-title-row, .hours-day, .hours-fields, .admin-list-item { display: flex; }
