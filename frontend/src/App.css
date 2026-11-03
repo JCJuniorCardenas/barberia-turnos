@@ -1,14 +1,7 @@
 #root { min-height: 100vh; }
 .booking-shell { max-width: 1180px; margin: 0 auto; min-height: 100vh; }
-.hero { display: grid; grid-template-columns: 1fr; gap: 2rem; padding: 1rem; }
-.hero-image { min-height: 240px; background: linear-gradient(145deg, #403831, #191816 65%); overflow: hidden; position: relative; }
-.hero-image img { filter: grayscale(1) contrast(1.1); height: 100%; object-fit: cover; position: absolute; width: 100%; }
-.hero-image::after { content: 'foto de ambiente'; position: absolute; inset: auto 1rem 1rem; color: var(--text-muted); font-size: .7rem; letter-spacing: .08em; text-transform: uppercase; }
-.hero-copy { padding: .5rem 0 1.5rem; }
 .brand-mark { color: var(--accent); font-size: .75rem; font-weight: 600; letter-spacing: .18em; margin: 0 0 2.5rem; }
-h1 { font: 500 clamp(3.2rem, 16vw, 7.5rem)/.95 var(--font-display); letter-spacing: -.055em; margin: 0; max-width: 8ch; }
-.hero-copy > p:last-child { color: var(--text-muted); line-height: 1.6; margin: 1.5rem 0 0; max-width: 24ch; }
-.booking-panel { background: var(--bg-alt); padding: 2rem 1rem 3rem; }
+h1 { font: 400 clamp(3.2rem, 16vw, 7.5rem)/.95 var(--font-display); letter-spacing: .01em; text-transform: uppercase; margin: 0; max-width: 8ch; }
 .progress { background: var(--border); height: 2px; margin-bottom: 2.5rem; }
 .progress span { background: var(--accent); display: block; height: 100%; transition: width .3s ease; }
 .step-heading, .slot-heading { display: flex; justify-content: space-between; gap: 1rem; align-items: baseline; margin-bottom: 1.5rem; }
@@ -30,10 +23,10 @@ h1 { font: 500 clamp(3.2rem, 16vw, 7.5rem)/.95 var(--font-display); letter-spaci
 .finance-chart-card { background: var(--bg-alt); border: 1px solid var(--border); border-radius: 18px; margin: 1.5rem 0; padding: 1.25rem; }
 .finance-page-title { margin-bottom: 2rem; }
 .finance-summary-cards { display: grid; gap: 1rem; grid-template-columns: repeat(3, minmax(0, 1fr)); margin-bottom: 1.5rem; }
-.finance-summary-card { background: #211f1c; border: 1px solid var(--border); border-radius: 16px; display: flex; flex-direction: column; gap: .55rem; min-width: 0; padding: 1.25rem; }
+.finance-summary-card { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; display: flex; flex-direction: column; gap: .55rem; min-width: 0; padding: 1.25rem; }
 .finance-summary-card span { color: var(--text-muted); font-size: .82rem; }
 .finance-summary-card strong { font-size: clamp(1.45rem, 3vw, 2rem); font-weight: 700; line-height: 1.1; }
-.finance-income { color: #10b981; }
+.finance-income { color: var(--accent); }
 .finance-expense { color: #ef4444; }
 .finance-balance { color: var(--text); }
 @media (max-width: 640px) { .finance-summary-cards { grid-template-columns: 1fr; } }
@@ -44,12 +37,12 @@ h1 { font: 500 clamp(3.2rem, 16vw, 7.5rem)/.95 var(--font-display); letter-spaci
 .field input[type='date'] { color-scheme: dark; }
 .time-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: .5rem; }
 .time-slot { background: transparent; border: 1px solid var(--border); color: var(--text); cursor: pointer; min-height: 44px; padding: .8rem .4rem; }
-.time-slot--selected { background: var(--accent); border-color: var(--accent); }
+.time-slot--selected { background: var(--accent); border-color: var(--accent); color: var(--bg); }
 .summary { border-left: 2px solid var(--accent); display: grid; gap: .35rem; margin-top: 2rem; padding: .2rem 0 .2rem 1rem; color: var(--text-muted); font-size: .8rem; }
 .summary span:first-child, .summary strong { color: var(--text); }
 .form-actions { align-items: center; display: flex; justify-content: flex-end; gap: 1rem; margin-top: 2.5rem; }
 .button { border: 1px solid transparent; cursor: pointer; min-height: 44px; padding: .9rem 1.2rem; }
-.button--primary { background: var(--accent); color: var(--text); }
+.button--primary { background: var(--accent); color: var(--bg); }
 .button--primary:disabled { cursor: not-allowed; opacity: .4; }
 .button--text { background: transparent; color: var(--text-muted); padding-inline: 0; }
 .button:focus-visible, .service-item:focus-visible, .time-slot:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
@@ -71,12 +64,6 @@ h1 { font: 500 clamp(3.2rem, 16vw, 7.5rem)/.95 var(--font-display); letter-spaci
 .booking-link { color: var(--text-muted); display: block; font-size: .75rem; line-height: 1.5; margin-top: 1rem; max-width: 28rem; }
 @keyframes confirmation-enter { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 @media (prefers-reduced-motion: reduce) { .confirmation-content, .loading-spinner { animation: none; } }
-@media (min-width: 700px) {
-  .hero { align-items: end; grid-template-columns: 1fr 1fr; min-height: 480px; padding: 2.5rem; }
-  .hero-image { grid-column: 2; grid-row: 1; min-height: 440px; }
-  .hero-copy { grid-column: 1; grid-row: 1; padding: 0 0 2rem; }
-  .booking-panel { margin-left: 25%; padding: 3rem 25% 5rem 3rem; }
-}
 
 .admin-shell { max-width: 1180px; margin: 0 auto; min-height: 100vh; padding: 1rem; }
 .admin-header, .admin-nav, .admin-title-row, .hours-day, .hours-fields, .admin-list-item { display: flex; }
@@ -102,7 +89,7 @@ h1 { font: 500 clamp(3.2rem, 16vw, 7.5rem)/.95 var(--font-display); letter-spaci
 .turno-info span, .service-admin-item span { color: var(--text-muted); font-size: .75rem; }
 .status { font-size: .68rem; text-transform: capitalize; }
 .status--cancelado { color: var(--text-muted); text-decoration: line-through; }
-.status--confirmado { color: #b9c994; }
+.status--confirmado { color: var(--accent-strong); }
 .status--pendiente { color: var(--accent); }
 .admin-list-item .button { font-size: .75rem; }
 .hours-list { display: grid; gap: .75rem; }
@@ -122,7 +109,7 @@ h1 { font: 500 clamp(3.2rem, 16vw, 7.5rem)/.95 var(--font-display); letter-spaci
 .form-row { display: flex; gap: 1rem; }
 .form-row .field { flex: 1; }
 .item-actions { display: flex; gap: .75rem; }
-.success-message { color: #b9c994; font-size: .8rem; }
+.success-message { color: var(--accent-strong); font-size: .8rem; }
 .admin-login { align-items: center; display: grid; min-height: 100vh; padding: 1.5rem; }
 .admin-login__content { max-width: 28rem; width: 100%; }
 .admin-login h1 { font-size: clamp(3rem, 14vw, 6rem); }

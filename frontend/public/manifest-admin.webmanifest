@@ -1,11 +1,11 @@
 {
-  "name": "El Vasco - Turnos",
-  "short_name": "El Vasco",
+  "name": "Fabián Díaz - Turnos",
+  "short_name": "Fabián Díaz",
   "start_url": "/admin/dashboard",
   "scope": "/",
   "display": "standalone",
-  "background_color": "#111110",
-  "theme_color": "#111110",
+  "background_color": "#0a0a0a",
+  "theme_color": "#0a0a0a",
   "lang": "es",
   "icons": [
     { "src": "/icons/icon-192.svg", "sizes": "192x192", "type": "image/svg+xml" },

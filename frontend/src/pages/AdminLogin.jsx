@@ -29,9 +29,9 @@ export function AdminLogin() {
   return (
     <main className="admin-login">
       <div className="admin-login__content">
-        <p className="brand-mark">EL VASCO</p>
+        <p className="brand-mark">FABIÁN DÍAZ</p>
         <h1>Ingresá al panel.</h1>
-        <p className="admin-intro">Gestioná tus turnos y la agenda de la barbería.</p>
+        <p className="admin-intro">Gestioná tus turnos y la agenda de la barbería de Fabián.</p>
         <form onSubmit={handleSubmit}>
           <Input id="email" label="Email" type="email" value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} autoComplete="email" required />
           <Input id="password" label="Contraseña" type="password" value={form.password} onChange={(e) => setForm({ ...form, password: e.target.value })} autoComplete="current-password" required />
