@@ -53,7 +53,7 @@ html { scroll-behavior: smooth; scroll-padding-top: 4.5rem; }
 .hero-content { margin: 0 auto; max-width: 1180px; padding: 7rem 1rem 6rem; position: relative; width: 100%; }
 .hero-kicker { color: var(--accent); font: .95rem var(--font-script); margin: 0 0 1rem; }
 .hero-title { font: 400 clamp(5rem, 26vw, 13rem)/.88 var(--font-display); letter-spacing: .01em; margin: 0; max-width: none; text-transform: uppercase; }
-.hero-line { display: block; overflow: hidden; padding-bottom: .04em; }
+.hero-line { display: block; margin-top: -.14em; overflow: hidden; padding: .14em 0 .04em; }
 .hero-line > span { animation: hero-rise .9s cubic-bezier(.2, .7, .2, 1) both; display: block; }
 .hero-line:nth-child(2) > span { animation-delay: .12s; color: var(--accent); }
 .hero-subtitle { animation: hero-fade .8s .5s both; color: var(--text); font-size: clamp(1rem, 3.5vw, 1.35rem); letter-spacing: .08em; margin: 1.5rem 0 2rem; text-transform: uppercase; }
@@ -212,3 +212,9 @@ html { scroll-behavior: smooth; scroll-padding-top: 4.5rem; }
   .step-content { animation: none; }
   .confirmation-check circle, .confirmation-check path { animation: none; stroke-dashoffset: 0; }
 }
+
+/* Foco visible global */
+a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible { outline: 2px solid var(--accent-strong); outline-offset: 3px; }
+.button:active { transform: scale(.97); }
+
+#root { overflow-x: clip; }

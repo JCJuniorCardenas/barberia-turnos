@@ -1,7 +1,7 @@
 #root { min-height: 100vh; }
 .booking-shell { max-width: 1180px; margin: 0 auto; min-height: 100vh; }
 .brand-mark { color: var(--accent); font-size: .75rem; font-weight: 600; letter-spacing: .18em; margin: 0 0 2.5rem; }
-h1 { font: 500 clamp(3.2rem, 16vw, 7.5rem)/.95 var(--font-display); letter-spacing: -.055em; margin: 0; max-width: 8ch; }
+h1 { font: 400 clamp(3.2rem, 16vw, 7.5rem)/.95 var(--font-display); letter-spacing: .01em; text-transform: uppercase; margin: 0; max-width: 8ch; }
 .progress { background: var(--border); height: 2px; margin-bottom: 2.5rem; }
 .progress span { background: var(--accent); display: block; height: 100%; transition: width .3s ease; }
 .step-heading, .slot-heading { display: flex; justify-content: space-between; gap: 1rem; align-items: baseline; margin-bottom: 1.5rem; }
@@ -23,10 +23,10 @@ h1 { font: 500 clamp(3.2rem, 16vw, 7.5rem)/.95 var(--font-display); letter-spaci
 .finance-chart-card { background: var(--bg-alt); border: 1px solid var(--border); border-radius: 18px; margin: 1.5rem 0; padding: 1.25rem; }
 .finance-page-title { margin-bottom: 2rem; }
 .finance-summary-cards { display: grid; gap: 1rem; grid-template-columns: repeat(3, minmax(0, 1fr)); margin-bottom: 1.5rem; }
-.finance-summary-card { background: #211f1c; border: 1px solid var(--border); border-radius: 16px; display: flex; flex-direction: column; gap: .55rem; min-width: 0; padding: 1.25rem; }
+.finance-summary-card { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; display: flex; flex-direction: column; gap: .55rem; min-width: 0; padding: 1.25rem; }
 .finance-summary-card span { color: var(--text-muted); font-size: .82rem; }
 .finance-summary-card strong { font-size: clamp(1.45rem, 3vw, 2rem); font-weight: 700; line-height: 1.1; }
-.finance-income { color: #10b981; }
+.finance-income { color: var(--accent); }
 .finance-expense { color: #ef4444; }
 .finance-balance { color: var(--text); }
 @media (max-width: 640px) { .finance-summary-cards { grid-template-columns: 1fr; } }
@@ -89,7 +89,7 @@ h1 { font: 500 clamp(3.2rem, 16vw, 7.5rem)/.95 var(--font-display); letter-spaci
 .turno-info span, .service-admin-item span { color: var(--text-muted); font-size: .75rem; }
 .status { font-size: .68rem; text-transform: capitalize; }
 .status--cancelado { color: var(--text-muted); text-decoration: line-through; }
-.status--confirmado { color: #b9c994; }
+.status--confirmado { color: var(--accent-strong); }
 .status--pendiente { color: var(--accent); }
 .admin-list-item .button { font-size: .75rem; }
 .hours-list { display: grid; gap: .75rem; }
@@ -109,7 +109,7 @@ h1 { font: 500 clamp(3.2rem, 16vw, 7.5rem)/.95 var(--font-display); letter-spaci
 .form-row { display: flex; gap: 1rem; }
 .form-row .field { flex: 1; }
 .item-actions { display: flex; gap: .75rem; }
-.success-message { color: #b9c994; font-size: .8rem; }
+.success-message { color: var(--accent-strong); font-size: .8rem; }
 .admin-login { align-items: center; display: grid; min-height: 100vh; padding: 1.5rem; }
 .admin-login__content { max-width: 28rem; width: 100%; }
 .admin-login h1 { font-size: clamp(3rem, 14vw, 6rem); }

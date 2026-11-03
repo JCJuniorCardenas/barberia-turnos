@@ -11,7 +11,7 @@ export function AdminLayout() {
   return (
     <main className="admin-shell">
       <header className="admin-header">
-        <div><p className="brand-mark">EL VASCO</p><span className="admin-label">Administración</span></div>
+        <div><p className="brand-mark">FABIÁN DÍAZ</p><span className="admin-label">Administración</span></div>
         <Button variant="text" onClick={logout}>Cerrar sesión</Button>
       </header>
       <nav className="admin-nav" aria-label="Administración">
