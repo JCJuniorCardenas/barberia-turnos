@@ -1,6 +1,6 @@
 # Créditos de fotos de relleno
 
-Fotos gratuitas de Unsplash (Unsplash License: uso comercial permitido, sin atribución obligatoria).
+Fotos de Unsplash y video de Pexels (licencias gratuitas: uso comercial permitido, sin atribución obligatoria).
 Son **provisorias**: reemplazar por trabajos reales de Fabián Díaz antes de publicar.
 
 | Archivo | Foto en Unsplash |
@@ -11,3 +11,4 @@ Son **provisorias**: reemplazar por trabajos reales de Fabián Díaz antes de pu
 | hero/hero-4.webp | https://unsplash.com/photos/BX8OTlmHOaI |
 | gallery/corte-1.webp | https://unsplash.com/photos/tgPrIYnW3g4 |
 | gallery/corte-2.webp | https://unsplash.com/photos/IvQeAVeJULw |
+| hero/hero-video.mp4 | https://www.pexels.com/video/barber-cutting-the-hair-of-the-customer-7686519/ (Pexels License, ArtHouse Studio) |

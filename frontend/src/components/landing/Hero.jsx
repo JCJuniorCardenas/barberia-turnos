@@ -20,7 +20,7 @@ export function Hero() {
     <section className="hero-landing" id="inicio" aria-label="Presentación">
       <div className="hero-bg" aria-hidden="true">
         {video
-          ? <video src={video} autoPlay muted loop playsInline />
+          ? <video src={video} poster={images[0]} autoPlay muted loop playsInline preload="auto" />
           : images.map((src, index) => <img key={src} className={`hero-slide ${index === active ? 'hero-slide--active' : ''}`} src={src} alt="" fetchPriority={index === 0 ? 'high' : undefined} />)}
       </div>
       <div className="hero-overlay" aria-hidden="true" />
