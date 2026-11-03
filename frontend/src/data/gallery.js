@@ -25,9 +25,3 @@ export const galleryItems = [
   placeholder('makeup-3', 'makeup', 'Maquillaje de cerca', 900),
 ]
 
-// Par de fotos para el slider Antes / Después.
-export const beforeAfter = {
-  before: null, // TODO: confirmar con Fabián
-  after: null, // TODO: confirmar con Fabián
-  alt: 'Antes y después de un corte',
-}
