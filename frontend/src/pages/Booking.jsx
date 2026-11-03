@@ -1,8 +1,15 @@
 import { useCallback, useEffect, useMemo, useState } from 'react'
 import { Button } from '../components/Button'
+import { About } from '../components/landing/About'
+import { BeforeAfter } from '../components/landing/BeforeAfter'
+import { Contact } from '../components/landing/Contact'
+import { FloatingCTA } from '../components/landing/FloatingCTA'
+import { Footer } from '../components/landing/Footer'
+import { Gallery } from '../components/landing/Gallery'
 import { Hero } from '../components/landing/Hero'
 import { Marquee } from '../components/landing/Marquee'
 import { Navbar } from '../components/landing/Navbar'
+import { Services } from '../components/landing/Services'
 import { Input } from '../components/Input'
 import { ProgressBar } from '../components/ProgressBar'
 import { ServiceListItem } from '../components/ServiceListItem'
@@ -59,6 +66,11 @@ export function Booking() {
     setTime('')
     setError('')
     setStep(2)
+  }
+
+  function pickService(nextService) {
+    selectService(nextService)
+    document.getElementById('reservar')?.scrollIntoView({ behavior: 'smooth' })
   }
 
   function selectDate(event) {
@@ -145,6 +157,10 @@ export function Booking() {
       <Navbar />
       <Hero />
       <Marquee />
+      <About />
+      <Services services={services} loading={loading && !services.length} error={error} onSelect={pickService} />
+      <Gallery />
+      <BeforeAfter />
     <main className="booking-shell">
       <section className="booking-panel" id="reservar" aria-label="Reserva de turno">
         <ProgressBar step={step} />
@@ -187,6 +203,9 @@ export function Booking() {
         </form>
       </section>
     </main>
+      <Contact />
+      <Footer />
+      <FloatingCTA />
     </>
   )
 }
