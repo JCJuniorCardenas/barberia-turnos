@@ -94,6 +94,8 @@ export function BookingFlow({ request, onServicesLoaded }) {
       setAccessCode(booking.codigoAcceso)
       setConfirmed(true)
       setStep(4)
+      // Abre el WhatsApp del dueño con el mensaje armado. Si el navegador bloquea la ventana, queda el botón de la confirmación.
+      window.open(buildWhatsappUrl(booking.codigoAcceso), '_blank', 'noopener')
     } catch (err) {
       if (err.status === 409) {
         setError('Uy, justo se ocupó ese horario. Elegí otro, por favor')
@@ -109,10 +111,16 @@ export function BookingFlow({ request, onServicesLoaded }) {
   }
 
   const readableDate = formatArgentinaDateLong(date)
-  const whatsappText = `Hola! Quiero confirmar mi turno para ${service?.nombre} el ${readableDate} a las ${time}. Mi nombre es ${form.nombre}.`
   const whatsappNumber = import.meta.env.VITE_WHATSAPP_NUMBER
   const myBookingUrl = `${window.location.origin}/mi-turno/${accessCode}`
-  const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(`${whatsappText} Podés ver o cancelar tu turno acá: ${myBookingUrl}`)}`
+
+  function buildWhatsappUrl(code) {
+    const text = `Hola! Confirmo mi turno para ${service?.nombre} el ${readableDate} a las ${time}. Mi nombre es ${form.nombre.trim()}.`
+    const bookingUrl = `${window.location.origin}/mi-turno/${code}`
+    return `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(`${text} Podés ver o cancelar tu turno acá: ${bookingUrl}`)}`
+  }
+
+  const whatsappUrl = buildWhatsappUrl(accessCode)
 
   function retry() {
     setError('')
