@@ -17,8 +17,11 @@ export class ServiciosService {
     return this.serviciosRepository.save(servicio);
   }
 
-  findAll(): Promise<Servicio[]> {
-    return this.serviciosRepository.find({ order: { nombre: 'ASC' } });
+  findAll(incluirInactivos = false): Promise<Servicio[]> {
+    return this.serviciosRepository.find({
+      where: incluirInactivos ? {} : { activo: true },
+      order: { nombre: 'ASC' },
+    });
   }
 
   async findOne(id: string): Promise<Servicio> {
@@ -36,9 +39,8 @@ export class ServiciosService {
   }
 
   async remove(id: string): Promise<void> {
-    const result = await this.serviciosRepository.delete(id);
-    if (!result.affected) {
-      throw new NotFoundException(`No se encontró el servicio ${id}`);
-    }
+    const servicio = await this.findOne(id);
+    servicio.activo = false;
+    await this.serviciosRepository.save(servicio);
   }
 }

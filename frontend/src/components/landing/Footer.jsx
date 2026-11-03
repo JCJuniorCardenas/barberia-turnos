@@ -6,6 +6,7 @@ export function Footer() {
       <p className="site-footer-brand">{site.brand}</p>
       <p>{site.tagline} · {site.city}</p>
       <p><a href={site.instagramUrl} target="_blank" rel="noreferrer">@{site.instagram}</a></p>
+      <p className="public-footer"><a href="/admin/login">Acceso administrador</a></p>
       <small>© {new Date().getFullYear()} {site.name}</small>
     </footer>
   )

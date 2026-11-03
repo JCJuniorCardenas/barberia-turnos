@@ -83,7 +83,14 @@ El archivo `Procfile` define el proceso web. Configurar `DATABASE_URL`, `NODE_EN
 
 ## Crear el administrador inicial
 
-Definir temporalmente `ADMIN_EMAIL` y `ADMIN_PASSWORD` en el entorno y ejecutar:
+En producción (`NODE_ENV=production`), el backend crea o actualiza el usuario
+administrador automáticamente al arrancar, usando `ADMIN_EMAIL` y
+`ADMIN_PASSWORD` del entorno — no hace falta correr nada a mano. Si cambiás
+`ADMIN_PASSWORD` y reiniciás el servicio, el usuario se actualiza con la
+contraseña nueva.
+
+Para desarrollo local (donde las migraciones/seed automáticos no corren),
+definir `ADMIN_EMAIL` y `ADMIN_PASSWORD` en el entorno y ejecutar:
 
 ```text
 npm run seed:admin

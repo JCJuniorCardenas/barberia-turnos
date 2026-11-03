@@ -43,7 +43,7 @@ async function request(path, options = {}, requiresAuth = false) {
 }
 
 export const api = {
-  getServices: () => request('/servicios'),
+  getServices: (incluirInactivos = false) => request(`/servicios${incluirInactivos ? '?incluirInactivos=true' : ''}`, {}, incluirInactivos),
   getAvailableSlots: (date, serviceId) => request(`/turnos/disponibles?fecha=${encodeURIComponent(date)}&servicioId=${encodeURIComponent(serviceId)}`),
   createBooking: (booking) => request('/turnos', { method: 'POST', body: JSON.stringify(booking) }),
   getMyBooking: (code) => request(`/turnos/mi-turno/${encodeURIComponent(code)}`),

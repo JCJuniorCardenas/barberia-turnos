@@ -1,13 +1,19 @@
 :root {
   --bg: #0a0a0a;
   --bg-alt: #141414;
+  --bg-raised: #1a1a1a;
   --surface: #1a1a1a;
   --text: #f5f1ea;
   --text-muted: #9c968c;
   --accent: #d4a24c;
   --accent-strong: #f0c36b;
   --accent-deep: #8a6a2a;
+  --accent-warm: #f0c36b;
+  --accent-soft: rgba(212, 162, 76, .12);
+  --accent-glow: rgba(212, 162, 76, .4);
   --border: #2a2823;
+  --gradient-hero: radial-gradient(120% 140% at 15% 0%, #1d160a 0%, #0f0c07 45%, #0a0a0a 80%);
+  --gradient-accent: linear-gradient(135deg, var(--accent-deep) 0%, var(--accent) 45%, var(--accent-strong) 100%);
   --font-display: 'Anton', 'Bebas Neue', Impact, sans-serif;
   --font-script: 'Permanent Marker', cursive;
   --font-functional: 'Inter', Arial, sans-serif;

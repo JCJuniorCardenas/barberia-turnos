@@ -27,8 +27,6 @@ html { scroll-behavior: smooth; scroll-padding-top: 4.5rem; }
 .landing-btn--small { min-height: 40px; padding: .55rem 1.1rem; font-size: .75rem; }
 
 /* Reveal al scroll */
-.reveal { opacity: 0; transform: translateY(28px); transition: opacity .7s ease, transform .7s cubic-bezier(.2, .7, .2, 1); transition-delay: var(--reveal-delay, 0ms); }
-.reveal--visible { opacity: 1; transform: none; }
 
 /* Navbar */
 .navbar { left: 0; position: fixed; right: 0; top: 0; transition: background .3s ease, border-color .3s ease, backdrop-filter .3s ease; z-index: 50; border-bottom: 1px solid transparent; }
@@ -82,7 +80,6 @@ html { scroll-behavior: smooth; scroll-padding-top: 4.5rem; }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  .reveal { opacity: 1; transform: none; transition: none; }
   .hero-line > span, .hero-subtitle, .hero-actions, .scroll-indicator span { animation: none; }
   .marquee-track { animation: none; }
   .hero-bg { transform: none !important; }

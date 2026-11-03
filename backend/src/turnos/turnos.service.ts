@@ -7,20 +7,10 @@ import { CreateTurnoDto } from './dto/create-turno.dto.js';
 import { EstadoTurno, Turno } from './entities/turno.entity.js';
 import { randomBytes } from 'node:crypto';
 import { FinanzasService } from '../finanzas/finanzas.service.js';
+import { argentinaDate, argentinaNowMinutes, argentinaToday } from '../common/utils/argentina-date.js';
 
 const toMinutes = (time: string) => { const [h, m] = time.slice(0, 5).split(':').map(Number); return h * 60 + m; };
 const toTime = (minutes: number) => `${String(Math.floor(minutes / 60)).padStart(2, '0')}:${String(minutes % 60).padStart(2, '0')}`;
-const argentinaDate = (fecha: string) => {
-  const date = new Date(`${fecha}T12:00:00-03:00`);
-  if (Number.isNaN(date.getTime()) || date.toISOString().slice(0, 10) !== fecha) throw new BadRequestException('Fecha inválida');
-  return date;
-};
-const argentinaNowMinutes = () => {
-  const parts = new Intl.DateTimeFormat('en', { timeZone: 'America/Argentina/Buenos_Aires', hour: '2-digit', minute: '2-digit', hour12: false }).formatToParts(new Date());
-  const values = Object.fromEntries(parts.map(({ type, value }) => [type, value]));
-  return Number(values.hour) * 60 + Number(values.minute);
-};
-const argentinaToday = () => new Intl.DateTimeFormat('en-CA', { timeZone: 'America/Argentina/Buenos_Aires' }).format(new Date());
 
 @Injectable()
 export class TurnosService {
@@ -53,6 +43,9 @@ export class TurnosService {
 
   async create(dto: CreateTurnoDto): Promise<Turno> {
     const service = await this.servicios.findOne(dto.servicioId);
+    if (!service.activo) {
+      throw new BadRequestException('Este servicio ya no está disponible');
+    }
     return this.repository.manager.transaction(async (manager) => {
       // Serializa las reservas de un mismo día dentro de PostgreSQL.
       await manager.query('SELECT pg_advisory_xact_lock(hashtext($1))', [`turno:${dto.fecha}`]);
@@ -100,8 +93,7 @@ export class TurnosService {
     const turno = await this.repository.findOne({ where: { codigoAcceso: codigo.toUpperCase() }, relations: { servicio: true } });
     if (!turno) throw new NotFoundException('No encontramos ese turno');
     if (turno.estado === EstadoTurno.CANCELADO) throw new ConflictException('Este turno ya está cancelado');
-    const today = new Intl.DateTimeFormat('en-CA', { timeZone: 'America/Argentina/Buenos_Aires' }).format(new Date());
-    if (turno.fecha < today) throw new ConflictException('No se puede cancelar un turno que ya pasó');
+    if (turno.fecha < argentinaToday()) throw new ConflictException('No se puede cancelar un turno que ya pasó');
     turno.estado = EstadoTurno.CANCELADO;
     await this.repository.save(turno);
     return this.findByAccessCode(codigo);

@@ -1,10 +1,11 @@
-import { BadRequestException, Injectable, NotFoundException, OnModuleInit } from '@nestjs/common';
+import { Injectable, NotFoundException, OnModuleInit } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { UpdateHorarioDto } from './dto/update-horario.dto.js';
 import { HorarioAtencion } from './entities/horario-atencion.entity.js';
 import { DiaBloqueado } from './entities/dia-bloqueado.entity.js';
 import { BloquearDiaDto } from './dto/bloquear-dia.dto.js';
+import { argentinaDate } from '../common/utils/argentina-date.js';
 
 @Injectable()
 export class HorariosService implements OnModuleInit {
@@ -52,10 +53,7 @@ export class HorariosService implements OnModuleInit {
   }
 
   async blockDay(dto: BloquearDiaDto): Promise<DiaBloqueado> {
-    const date = new Date(`${dto.fecha}T12:00:00-03:00`);
-    if (Number.isNaN(date.getTime()) || date.toISOString().slice(0, 10) !== dto.fecha) {
-      throw new BadRequestException('Fecha inválida');
-    }
+    argentinaDate(dto.fecha);
     const existing = await this.blockedDays.findOneBy({ fecha: dto.fecha });
     if (existing) {
       existing.motivo = dto.motivo || null;

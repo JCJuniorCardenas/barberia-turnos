@@ -157,7 +157,9 @@ export function BookingFlow({ request, onServicesLoaded }) {
                 {step === 1 && (
                   <div className="step-content" key="step-1">
                     <div className="step-heading"><span>Elegí tu servicio</span><small>El comienzo</small></div>
-                    {loading ? <p className="loading-state"><span className="loading-spinner" aria-hidden="true" />Cargando servicios…</p> : (
+                    {loading ? <p className="loading-state"><span className="loading-spinner" aria-hidden="true" />Cargando servicios…</p> : services.length === 0 ? (
+                      <p className="empty-state">Por ahora no hay servicios disponibles. Probá de nuevo más tarde.</p>
+                    ) : (
                       <div className="service-list">
                         {services.map((item) => <ServiceListItem key={item.id} service={item} selected={service?.id === item.id} onSelect={() => selectService(item)} />)}
                       </div>
