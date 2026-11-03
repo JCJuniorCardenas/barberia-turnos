@@ -1,3 +1,6 @@
+import corte1 from '../assets/gallery/corte-1.webp'
+import corte2 from '../assets/gallery/corte-2.webp'
+
 // Cargá acá las fotos reales de Fabián: copiá los archivos (.webp) a src/assets/gallery/,
 // importalos arriba y reemplazá `src: null` por la imagen importada. Ejemplo:
 //   import corte1 from '../assets/gallery/corte-1.webp'
@@ -13,8 +16,8 @@ export const galleryCategories = [
 const placeholder = (id, category, alt, height = 1000) => ({ id, category, alt, src: null, width: 800, height }) // TODO: confirmar con Fabián
 
 export const galleryItems = [
-  placeholder('cortes-1', 'cortes', 'Corte masculino de Fabián Díaz'),
-  placeholder('cortes-2', 'cortes', 'Degradado con barba perfilada', 800),
+  { id: 'cortes-1', category: 'cortes', alt: 'Corte de pelo con tijera', src: corte1, width: 1000, height: 1250 }, // TODO: foto de relleno (Unsplash), reemplazar por trabajo de Fabián
+  { id: 'cortes-2', category: 'cortes', alt: 'Cliente en la silla del barbero', src: corte2, width: 1000, height: 667 }, // TODO: foto de relleno (Unsplash), reemplazar por trabajo de Fabián
   placeholder('cortes-3', 'cortes', 'Corte clásico con textura', 1200),
   placeholder('cortes-4', 'cortes', 'Corte y barba', 900),
   placeholder('cabellos-1', 'cabellos', 'Estilismo de cabello', 1100),
