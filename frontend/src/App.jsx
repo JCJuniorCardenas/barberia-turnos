@@ -10,6 +10,7 @@ import { Booking } from './pages/Booking'
 import { MyBooking } from './pages/MyBooking'
 import './styles/tokens.css'
 import './App.css'
+import './styles/landing.css'
 
 function App() {
   return (

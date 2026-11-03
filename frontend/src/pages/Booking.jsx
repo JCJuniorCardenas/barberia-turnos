@@ -1,5 +1,8 @@
 import { useCallback, useEffect, useMemo, useState } from 'react'
 import { Button } from '../components/Button'
+import { Hero } from '../components/landing/Hero'
+import { Marquee } from '../components/landing/Marquee'
+import { Navbar } from '../components/landing/Navbar'
 import { Input } from '../components/Input'
 import { ProgressBar } from '../components/ProgressBar'
 import { ServiceListItem } from '../components/ServiceListItem'
@@ -118,7 +121,7 @@ export function Booking() {
   if (confirmed) {
     return (
       <main className="booking-shell confirmation-screen">
-        <p className="brand-mark">EL VASCO</p>
+        <p className="brand-mark">FABIÁN DÍAZ</p>
         <div className="confirmation-content">
           <span className="confirmation-mark" aria-hidden="true">✓</span>
           <h1>Tu turno está reservado.</h1>
@@ -138,19 +141,12 @@ export function Booking() {
   }
 
   return (
+    <>
+      <Navbar />
+      <Hero />
+      <Marquee />
     <main className="booking-shell">
-      <header className="hero">
-        <div className="hero-image">
-          <img src="https://images.unsplash.com/photo-1585747860715-2ba37e788b70?w=800&q=80" alt="Ambiente de barbería El Vasco" onError={(event) => { event.currentTarget.style.display = 'none' }} />
-        </div>
-        <div className="hero-copy">
-          <p className="brand-mark">EL VASCO</p>
-          <h1>Tu próximo corte,<br />a tu tiempo.</h1>
-          <p>Reservá tu turno en unos pocos pasos.</p>
-        </div>
-      </header>
-
-      <section className="booking-panel" aria-label="Reserva de turno">
+      <section className="booking-panel" id="reservar" aria-label="Reserva de turno">
         <ProgressBar step={step} />
         <form onSubmit={handleSubmit}>
           {error && <div className="error-message" role="alert"><p>{error}</p><button className="button button--text retry-button" type="button" onClick={retry}>Reintentar</button></div>}
@@ -191,5 +187,6 @@ export function Booking() {
         </form>
       </section>
     </main>
+    </>
   )
 }

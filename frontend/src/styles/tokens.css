@@ -1,12 +1,16 @@
-@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600&family=Permanent+Marker&display=swap');
 
 :root {
-  --bg: #111110;
-  --bg-alt: #1b1a18;
-  --text: #f2ece4;
-  --text-muted: #a8a29a;
-  --accent: #a63d2f;
-  --border: #2a2926;
-  --font-display: 'Fraunces', Georgia, serif;
+  --bg: #0a0a0a;
+  --bg-alt: #141414;
+  --surface: #1a1a1a;
+  --text: #f5f1ea;
+  --text-muted: #9c968c;
+  --accent: #d4a24c;
+  --accent-strong: #f0c36b;
+  --accent-deep: #8a6a2a;
+  --border: #2a2823;
+  --font-display: 'Anton', 'Bebas Neue', Impact, sans-serif;
+  --font-script: 'Permanent Marker', cursive;
   --font-functional: 'Inter', Arial, sans-serif;
 }
