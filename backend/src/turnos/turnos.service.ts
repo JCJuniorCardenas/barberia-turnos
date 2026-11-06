@@ -33,7 +33,9 @@ export class TurnosService {
     const today = argentinaToday();
     const minimumStart = fecha === today ? argentinaNowMinutes() + 15 : null;
     const free: string[] = [];
-    for (let slot = start; slot + duration <= end; slot += 30) {
+    // Los turnos se ofrecen cada `duracion` minutos (mínimo 30), así un servicio de 1 hora no muestra horarios cada media hora.
+    const step = Math.max(duration, 30);
+    for (let slot = start; slot + duration <= end; slot += step) {
       if (minimumStart !== null && slot < minimumStart) continue;
       const overlaps = appointments.some((appointment) => appointment.estado !== EstadoTurno.CANCELADO && slot < toMinutes(appointment.hora) + appointment.servicio.duracionMinutos && slot + duration > toMinutes(appointment.hora));
       if (!overlaps) free.push(toTime(slot));

@@ -63,6 +63,15 @@ describe('TurnosService', () => {
       expect(slots).toEqual([]);
     });
 
+    it('ofrece horarios cada hora si el servicio dura una hora', async () => {
+      const { service } = buildService({
+        horario: { horaInicio: '09:00', horaFin: '12:00', cerrado: false },
+        servicio: { id: 'servicio-1', duracionMinutos: 60, activo: true, precio: 1000, nombre: 'Corte + Barba' },
+      });
+      const slots = await service.availableSlots(futureDate, 'servicio-1');
+      expect(slots).toEqual(['09:00', '10:00', '11:00']);
+    });
+
     it('devuelve slots vacíos si el día está cerrado', async () => {
       const { service } = buildService({ horario: { horaInicio: '09:00', horaFin: '18:00', cerrado: true } });
       const slots = await service.availableSlots(futureDate, 'servicio-1');
