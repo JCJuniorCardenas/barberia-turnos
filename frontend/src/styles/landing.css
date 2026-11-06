@@ -80,7 +80,7 @@ html { scroll-behavior: smooth; scroll-padding-top: 4.5rem; }
 /* Carrusel que avanza con el scroll */
 
 /* Contacto */
-.contact-grid { display: grid; gap: 2.5rem; }
+.contact-grid { align-items: stretch; display: grid; gap: 2.5rem; grid-template-columns: minmax(0, 1fr); }
 .contact-actions { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 1.5rem; }
 .hours-card { background: rgb(0 0 0 / .45); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border: 1px solid rgb(255 255 255 / .2); border-radius: 1.5rem; padding: 1.5rem; }
 .hours-card h3 { color: var(--accent); font: 1.5rem var(--font-display); letter-spacing: .05em; margin: 0 0 1rem; text-transform: uppercase; }
@@ -99,7 +99,7 @@ html { scroll-behavior: smooth; scroll-padding-top: 4.5rem; }
 
 @media (min-width: 800px) {
   .section { padding: 7rem 2rem; }
-  .contact-grid { grid-template-columns: 1fr 1fr; }
+  .contact-grid { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
   .floating-cta { display: none; }
   .site-footer { padding-bottom: 3rem; }
 }
@@ -166,7 +166,10 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
 /* Fotos laterales */
 .side-photo { border: 1px solid rgb(255 255 255 / .2); border-radius: 1.5rem; display: block; height: 220px; margin-top: 1.5rem; object-fit: cover; object-position: center 25%; width: 100%; }
 .side-photo--wide { height: 200px; margin: 0 0 1rem; }
-.contact-side { display: grid; }
+.contact-info .hours-card { margin-top: 1.5rem; }
+.contact-map { border-radius: 1.5rem; min-height: 22rem; overflow: hidden; position: relative; }
+.contact-map iframe { border: 0; display: block; height: 100%; min-height: 22rem; width: 100%; }
+.contact-map .landing-btn { bottom: 1rem; box-shadow: 0 8px 24px rgb(0 0 0 / .45); left: 1rem; position: absolute; }
 @media (min-width: 900px) {
   .side-photo { height: 340px; }
   .side-photo--wide { height: 220px; }

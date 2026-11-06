@@ -9,9 +9,9 @@ export const site = {
   instagramUrl: 'https://www.instagram.com/studio_fabiandiaz/',
   whatsappUrl: 'https://wa.me/message/LQ7AP3CDI4PRA1',
   address: 'Paso de los Libres, Corrientes', // TODO: confirmar con Fabián (dirección exacta)
-  mapUrl: null, // TODO: confirmar con Fabián (link de Google Maps)
+  mapQuery: 'Paso de los Libres, Corrientes', // TODO: confirmar con Fabián (dirección exacta del local para ubicar el mapa)
   marquee: ['Cortes', 'Barba', 'Estilismo', '+70 clientes felices'],
-  headline: ['Corte preciso.', 'Estilo propio.'],
+  headline: ['Reservá tu turno', 'acá.'],
   intro: 'Barbería y estilismo masculino en Paso de los Libres. Elegí tu horario y reservá en menos de un minuto.',
   nav: [
     { href: '#reservar', label: 'Turnos' },

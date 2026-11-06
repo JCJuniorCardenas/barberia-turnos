@@ -133,7 +133,7 @@ export function BookingFlow({ request, onServicesLoaded }) {
       <div className="section-inner booking-grid">
         <div className="booking-intro">
           <p className="section-kicker">Reservar turno</p>
-          <h2 className="section-title">Tu próximo corte,<br />a tu tiempo.</h2>
+          <h2 className="section-title">Agendá tu próximo corte</h2>
           <p className="section-text">Reservá tu turno en unos pocos pasos.</p>
         </div>
 
@@ -164,7 +164,7 @@ export function BookingFlow({ request, onServicesLoaded }) {
 
                 {step === 1 && (
                   <div className="step-content" key="step-1">
-                    <div className="step-heading"><span>Elegí tu servicio</span><small>El comienzo</small></div>
+                    <div className="step-heading"><span>Elegí tu servicio</span><small>Paso 1 de 3</small></div>
                     {loading ? <p className="loading-state"><span className="loading-spinner" aria-hidden="true" />Cargando servicios…</p> : services.length === 0 ? (
                       <p className="empty-state">Por ahora no hay servicios disponibles. Probá de nuevo más tarde.</p>
                     ) : (
