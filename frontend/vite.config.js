@@ -12,8 +12,8 @@ export default defineConfig({
       manifest: {
         name: 'Fabián Díaz - Turnos',
         short_name: 'Fabián Díaz',
-        theme_color: '#0a0a0a',
-        background_color: '#0a0a0a',
+        theme_color: '#0a1213',
+        background_color: '#0a1213',
         display: 'standalone',
         lang: 'es',
         start_url: '/',

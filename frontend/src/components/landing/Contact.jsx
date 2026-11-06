@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react'
 import { site } from '../../data/site'
 import { api } from '../../services/api'
-import local from '../../assets/gallery/local.webp'
 import { Reveal } from '../Reveal'
 
 const days = ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado']
@@ -32,7 +31,6 @@ export function Contact() {
           </Reveal>
         </div>
         <div className="contact-side">
-        <img className="side-photo side-photo--wide" src={local} alt="Interior de una barbería con sillas y espejos" width="1000" height="684" loading="lazy" />
         <Reveal className="hours-card" delay={160}>
           <h3>Horarios</h3>
           {hours.length ? (
