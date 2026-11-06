@@ -11,7 +11,7 @@ export function Hero() {
         <p className="hero-subtitle">{site.intro}</p>
         <div className="hero-actions">
           <a className="landing-btn" href="#reservar">Reservar turno</a>
-          <a className="landing-btn landing-btn--ghost" href="#trabajos">Ver trabajos</a>
+          <a className="landing-btn landing-btn--ghost" href={site.whatsappUrl} target="_blank" rel="noreferrer">Escribime por WhatsApp</a>
         </div>
       </div>
       <a className="scroll-indicator" href="#reservar">Bajá para reservar</a>

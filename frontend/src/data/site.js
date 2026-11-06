@@ -15,7 +15,6 @@ export const site = {
   intro: 'Barbería y estilismo masculino en Paso de los Libres. Elegí tu horario y reservá en menos de un minuto.',
   nav: [
     { href: '#reservar', label: 'Turnos' },
-    { href: '#trabajos', label: 'Mis trabajos' },
     { href: '#contacto', label: 'Contacto' },
   ],
 }

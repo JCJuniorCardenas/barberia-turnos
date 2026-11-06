@@ -77,44 +77,11 @@ html { scroll-behavior: smooth; scroll-padding-top: 4.5rem; }
 .photo-placeholder--dim { filter: brightness(.7); }
 
 /* Galería */
-.gallery-tabs { display: flex; flex-wrap: wrap; gap: .5rem; margin-bottom: 1.5rem; }
-.gallery-tab { background: transparent; border: 1px solid rgb(255 255 255 / .3); border-radius: 999px; color: var(--text-muted); cursor: pointer; font: 600 .8rem var(--font-functional); letter-spacing: .1em; min-height: 44px; padding: .6rem 1.2rem; text-transform: uppercase; transition: all .2s ease; }
-.gallery-tab--active { background: var(--accent); border-color: var(--accent); color: var(--bg); }
 /* Carrusel que avanza con el scroll */
-.carousel { position: relative; }
-.carousel-pin { display: flex; flex-direction: column; gap: 1.25rem; height: calc(100svh - 66px); justify-content: center; overflow: hidden; position: sticky; top: 66px; }
-.carousel-head { margin: 0 auto; max-width: 1180px; padding-inline: 1rem; width: 100%; }
-.carousel-head .section-title { font-size: clamp(2rem, 8vw, 3.4rem); margin-bottom: .4rem; }
-.carousel-help { color: rgb(255 255 255 / .7); font-size: .85rem; margin: 0 0 1rem; }
-.carousel-head .gallery-tabs { margin-bottom: 0; }
-.carousel-track { display: flex; gap: 1rem; list-style: none; margin: 0; padding: 0 1rem; width: max-content; will-change: transform; }
-.carousel-bar { background: rgb(255 255 255 / .2); height: 2px; margin: 0 auto; max-width: min(1180px, calc(100% - 2rem)); width: 100%; }
-.carousel-bar div { background: var(--accent); height: 100%; transform: scaleX(0); transform-origin: left; }
-.gallery-card { flex: 0 0 auto; width: min(64vw, 17rem); }
-.gallery-item { background: none; border: 1px solid rgb(255 255 255 / .2); border-radius: 1.5rem; box-shadow: 0 12px 32px rgb(0 0 0 / .45); cursor: zoom-in; display: block; overflow: hidden; padding: 0; width: 100%; }
-.gallery-item img, .gallery-item .photo-placeholder { aspect-ratio: 4 / 5; display: block; height: auto; object-fit: cover; transition: transform .5s ease; width: 100%; }
 @media (prefers-reduced-motion: reduce) {
-  .carousel-pin { height: auto; position: static; padding: 4rem 0; }
-  .carousel-track { overflow-x: auto; scroll-snap-type: x mandatory; width: auto; }
-  .gallery-card { scroll-snap-align: start; }
-  .carousel-bar { display: none; }
 }
 @media (min-width: 800px) {
-  .carousel-track { padding-inline: max(1rem, calc((100vw - 1180px) / 2 + 1rem)); gap: 1.5rem; }
-  .gallery-card { width: 18rem; }
 }
-.gallery-item:hover img, .gallery-item:hover .photo-placeholder { transform: scale(1.06); }
-.gallery-item:focus-visible { outline: 2px solid var(--accent-strong); outline-offset: 3px; }
-.lightbox { align-items: center; background: rgb(0 0 0 / .92); display: flex; inset: 0; justify-content: center; position: fixed; z-index: 100; }
-.lightbox-body { max-height: 85vh; max-width: min(90vw, 560px); width: 100%; }
-.lightbox-body img { display: block; max-height: 85vh; object-fit: contain; width: 100%; }
-.lightbox-close, .lightbox-nav { background: transparent; border: 0; color: var(--text); cursor: pointer; font-size: 2.5rem; height: 48px; position: absolute; width: 48px; }
-.lightbox-close { right: .75rem; top: .75rem; }
-.lightbox-nav { top: 50%; transform: translateY(-50%); }
-.lightbox-nav--prev { left: .25rem; }
-.lightbox-nav--next { right: .25rem; }
-.lightbox button:hover { color: var(--accent-strong); }
-.lightbox button:focus-visible { outline: 2px solid var(--accent-strong); }
 
 /* Contacto */
 .contact-grid { display: grid; gap: 2.5rem; }
