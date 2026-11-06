@@ -78,10 +78,6 @@ html { scroll-behavior: smooth; scroll-padding-top: 4.5rem; }
 
 /* Galería */
 /* Carrusel que avanza con el scroll */
-@media (prefers-reduced-motion: reduce) {
-}
-@media (min-width: 800px) {
-}
 
 /* Contacto */
 .contact-grid { display: grid; gap: 2.5rem; }
