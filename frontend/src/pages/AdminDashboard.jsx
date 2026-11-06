@@ -4,6 +4,7 @@ import { Input } from '../components/Input'
 import { Reveal } from '../components/Reveal'
 import { api } from '../services/api'
 import { formatArgentinaDateLong, getArgentinaNowLabel, getArgentinaToday } from '../utils/date'
+import { toWhatsappNumber } from '../utils/phone'
 
 const today = getArgentinaToday()
 
@@ -51,6 +52,12 @@ export function AdminDashboard() {
     finally { setCompleting('') }
   }
 
+  // Recordatorio gratis: abre WhatsApp con el mensaje armado, el dueño lo envía con un toque.
+  function reminderUrl(turno, hora) {
+    const text = `Hola ${turno.nombreCliente}! Te recuerdo tu turno de ${turno.servicio?.nombre || 'barbería'} el ${formatArgentinaDateLong(date)} a las ${hora}. Si no podés venir, avisanos por acá.`
+    return `https://wa.me/${toWhatsappNumber(turno.telefonoCliente)}?text=${encodeURIComponent(text)}`
+  }
+
   const isToday = date === today
   const nowLabel = isToday ? getArgentinaNowLabel() : null
 
@@ -71,6 +78,7 @@ export function AdminDashboard() {
               <Reveal as="article" delay={Math.min(index, 8) * 30} className={`admin-list-item ${esPasado ? 'admin-list-item--pasado' : ''}`} key={turno.id}>
                 <div className="turno-time">{hora}</div>
                 <div className="turno-info"><strong>{turno.nombreCliente}</strong><span>{turno.servicio?.nombre || 'Servicio'} · {turno.telefonoCliente}</span><small className={`status status--${turno.estado}`}>{turno.estado}</small></div>
+                {turno.estado !== 'cancelado' && !esPasado && date >= today && toWhatsappNumber(turno.telefonoCliente) && <a className="button button--text" href={reminderUrl(turno, hora)} target="_blank" rel="noreferrer" aria-label={`Recordar el turno a ${turno.nombreCliente} por WhatsApp`}>Recordar</a>}
                 {turno.estado === 'pendiente' && <Button variant="text" disabled={confirming === turno.id} onClick={() => confirm(turno.id)}>{confirming === turno.id ? '…' : 'Confirmar'}</Button>}
                 {turno.estado === 'confirmado' && <Button variant="text" disabled={completing === turno.id} onClick={() => complete(turno.id)}>{completing === turno.id ? '…' : 'Completar'}</Button>}
                 {turno.estado !== 'cancelado' && <Button variant="text" disabled={cancelling === turno.id} onClick={() => cancel(turno.id)}>{cancelling === turno.id ? '…' : 'Cancelar'}</Button>}
