@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { galleryCategories, galleryItems } from '../../data/gallery'
-import { Reveal } from '../Reveal'
+import { ScrollCarousel } from './ScrollCarousel'
 
 function Photo({ item, className }) {
   if (item.src) return <img className={className} src={item.src} alt={item.alt} width={item.width} height={item.height} loading="lazy" />
@@ -30,23 +30,28 @@ export function Gallery() {
   }
 
   return (
-    <section className="section" id="trabajos">
-      <div className="section-inner">
-        <Reveal as="p" className="section-kicker">Trabajos</Reveal>
-        <Reveal as="h2" className="section-title" delay={80}>Mirá el resultado</Reveal>
-        <Reveal className="gallery-tabs" delay={120} role="tablist" aria-label="Categorías">
-          {galleryCategories.map((cat) => (
-            <button key={cat.id} type="button" role="tab" aria-selected={category === cat.id} className={`gallery-tab ${category === cat.id ? 'gallery-tab--active' : ''}`} onClick={() => changeCategory(cat.id)}>{cat.label}</button>
-          ))}
-        </Reveal>
-        <div className="gallery-strip">
-          {items.map((item, index) => (
-            <button key={item.id} type="button" className="gallery-item" onClick={() => setOpen(index)} aria-label={`Ampliar: ${item.alt}`}>
+    <section id="trabajos">
+      <ScrollCarousel
+        kicker="Trabajos"
+        title="Mirá el resultado"
+        help="Seguí bajando y mirá los trabajos →"
+        resetKey={category}
+        controls={(
+          <div className="gallery-tabs" role="tablist" aria-label="Categorías">
+            {galleryCategories.map((cat) => (
+              <button key={cat.id} type="button" role="tab" aria-selected={category === cat.id} className={`gallery-tab ${category === cat.id ? 'gallery-tab--active' : ''}`} onClick={() => changeCategory(cat.id)}>{cat.label}</button>
+            ))}
+          </div>
+        )}
+      >
+        {items.map((item, index) => (
+          <li key={item.id} className="gallery-card">
+            <button type="button" className="gallery-item" onClick={() => setOpen(index)} aria-label={`Ampliar: ${item.alt}`}>
               <Photo item={item} />
             </button>
-          ))}
-        </div>
-      </div>
+          </li>
+        ))}
+      </ScrollCarousel>
 
       {open !== null && items[open] && (
         <div className="lightbox" role="dialog" aria-modal="true" aria-label="Foto ampliada" onClick={() => setOpen(null)}>

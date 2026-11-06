@@ -17,7 +17,7 @@ export function Navbar() {
   return (
     <header className={`navbar ${scrolled || open ? 'navbar--solid' : ''}`}>
       <div className="navbar-inner">
-        <a className="navbar-logo" href="#inicio" onClick={close}>{site.brand}</a>
+        <a className="navbar-logo" href="#inicio" onClick={close}><span>{site.brand}</span><small>Barbería &amp; Estilismo</small></a>
         <nav id="navbar-links" className={`navbar-links ${open ? 'navbar-links--open' : ''}`} aria-label="Principal">
           {site.nav.map((item) => <a key={item.href} href={item.href} onClick={close}>{item.label}</a>)}
         </nav>
