@@ -1,3 +1,8 @@
+import corteF1 from '../assets/gallery/corte-fabian-1.jpg'
+import corteF2 from '../assets/gallery/corte-fabian-2.jpg'
+import corteF3 from '../assets/gallery/corte-fabian-3.jpg'
+import cabelloF1 from '../assets/gallery/cabello-fabian-1.jpg'
+import makeupF1 from '../assets/gallery/makeup-fabian-1.jpg'
 import corte1 from '../assets/gallery/corte-1.webp'
 import corte2 from '../assets/gallery/corte-2.webp'
 import corte3 from '../assets/hero/hero-1.webp'
@@ -12,7 +17,7 @@ import makeup2 from '../assets/gallery/makeup-2.webp'
 import makeup3 from '../assets/gallery/makeup-3.webp'
 import makeup4 from '../assets/gallery/makeup-4.webp'
 
-// Fotos de relleno de Unsplash (ver src/assets/CREDITOS.md).
+// Trabajos reales de Fabián (*-fabian-*, tomados de su Instagram público) y fotos de relleno de Unsplash (ver src/assets/CREDITOS.md).
 // TODO: confirmar con Fabián — reemplazar por sus trabajos reales: copiá los .webp a src/assets/gallery/,
 // importalos arriba y cambiá `src`. Si `src` es null se muestra un placeholder.
 
@@ -25,6 +30,11 @@ export const galleryCategories = [
 const item = (id, category, alt, src, width, height) => ({ id, category, alt, src, width, height })
 
 export const galleryItems = [
+  item('cortes-ig-1', 'cortes', 'Corte degradé en blanco y negro', corteF1, 480, 640),
+  item('cortes-ig-2', 'cortes', 'Corte con diseño en la nuca', corteF2, 480, 640),
+  item('cortes-ig-3', 'cortes', 'Corte con flequillo y degradé', corteF3, 360, 640),
+  item('cabellos-ig-1', 'cabellos', 'Cabello largo con mechas y volumen', cabelloF1, 360, 640),
+  item('makeup-ig-1', 'makeup', 'Maquillaje natural con labios rosados', makeupF1, 480, 640),
   item('cortes-1', 'cortes', 'Corte de pelo con tijera', corte1, 1000, 1250),
   item('cortes-2', 'cortes', 'Cliente en la silla del barbero', corte2, 1000, 667),
   item('cortes-3', 'cortes', 'Barbero secando el pelo de un cliente', corte3, 1600, 2400),

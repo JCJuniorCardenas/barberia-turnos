@@ -1,7 +1,7 @@
 import { galleryItems } from '../../data/gallery'
 
 // Mosaico fijo de fotos detrás de toda la landing (mismo recurso que el sitio de Imported Beauty Bar).
-const ids = ['cortes-1', 'cabellos-1', 'cortes-2', 'cabellos-2', 'cabellos-3', 'makeup-4']
+const ids = ['cortes-ig-1', 'cabellos-ig-1', 'cortes-ig-2', 'makeup-ig-1', 'cortes-ig-3', 'cabellos-1']
 const photos = ids.map((id) => galleryItems.find((item) => item.id === id)).filter((item) => item?.src)
 
 export function Backdrop() {

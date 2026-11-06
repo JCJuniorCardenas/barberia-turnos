@@ -1,5 +1,7 @@
 # Créditos de fotos de relleno
 
+Las fotos `gallery/*-fabian-*.jpg` son trabajos de Fabián Díaz tomados de su Instagram público (@studio_fabiandiaz). Conviene pedirle las originales en alta calidad.
+
 Fotos de Unsplash y video de Pexels (licencias gratuitas: uso comercial permitido, sin atribución obligatoria).
 Son **provisorias**: reemplazar por trabajos reales de Fabián Díaz antes de publicar.
 
